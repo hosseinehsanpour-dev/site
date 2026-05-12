@@ -1,0 +1,1974 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hossein Ehsanpour — Construction & Interior Design</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+/* ── RESET & BASE ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --cream: #F5F0E8;
+  --warm-white: #FAF8F3;
+  --charcoal: #1C1B18;
+  --dark: #0E0D0B;
+  --gold: #C9A84C;
+  --gold-light: #E8D5A3;
+  --gold-dim: #8B6E2E;
+  --muted: #7A7569;
+  --border: rgba(201,168,76,0.18);
+  --serif: 'Cormorant Garamond', Georgia, serif;
+  --sans: 'Montserrat', sans-serif;
+}
+html { scroll-behavior: smooth; overflow-x: hidden; }
+body {
+  font-family: var(--sans);
+  background: var(--dark);
+  color: var(--cream);
+  cursor: none;
+  overflow-x: hidden;
+}
+
+/* ── CUSTOM CURSOR ── */
+#cursor {
+  position: fixed; top: 0; left: 0; z-index: 9999;
+  pointer-events: none;
+}
+.cursor-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--gold);
+  position: absolute; transform: translate(-50%, -50%);
+  transition: transform 0.1s ease, width 0.3s ease, height 0.3s ease, background 0.3s ease;
+}
+.cursor-ring {
+  width: 36px; height: 36px; border-radius: 50%;
+  border: 1px solid rgba(201,168,76,0.5);
+  position: absolute; transform: translate(-50%, -50%);
+  transition: transform 0.12s ease, width 0.4s ease, height 0.4s ease, border-color 0.3s ease, background 0.3s ease;
+}
+body.hovering .cursor-ring {
+  width: 56px; height: 56px;
+  background: rgba(201,168,76,0.08);
+  border-color: var(--gold);
+}
+body.hovering .cursor-dot { width: 4px; height: 4px; }
+
+/* ── LOADER ── */
+#loader {
+  position: fixed; inset: 0; z-index: 10000;
+  background: var(--dark);
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  gap: 32px;
+}
+.loader-logo {
+  font-family: var(--serif);
+  font-size: clamp(28px, 5vw, 52px);
+  font-weight: 300; letter-spacing: 0.2em;
+  color: var(--cream);
+  opacity: 0;
+  animation: fadeUp 0.8s ease 0.3s forwards;
+}
+.loader-logo em { color: var(--gold); font-style: italic; }
+.loader-bar-wrap {
+  width: 200px; height: 1px;
+  background: rgba(201,168,76,0.2);
+  overflow: hidden;
+  opacity: 0;
+  animation: fadeIn 0.5s ease 0.8s forwards;
+}
+.loader-bar {
+  height: 100%; width: 0%; background: var(--gold);
+  animation: loadBar 1.6s cubic-bezier(0.4,0,0.2,1) 1s forwards;
+}
+.loader-pct {
+  font-family: var(--sans); font-size: 11px;
+  letter-spacing: 0.2em; color: var(--muted);
+  opacity: 0;
+  animation: fadeIn 0.5s ease 0.8s forwards;
+}
+@keyframes loadBar { to { width: 100%; } }
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn { to { opacity: 1; } }
+
+/* ── NAV ── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 500;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 28px 60px;
+  transition: padding 0.5s ease, background 0.5s ease;
+}
+nav.scrolled {
+  padding: 18px 60px;
+  background: rgba(14,13,11,0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+}
+.nav-links, .nav-cta {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-8px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+nav.scrolled .nav-links, nav.scrolled .nav-cta {
+  opacity: 1;
+  pointer-events: all;
+  transform: translateY(0);
+}
+.nav-logo {
+  font-family: var(--serif); font-size: 22px; font-weight: 300;
+  letter-spacing: 0.12em; text-decoration: none; color: var(--cream);
+}
+.nav-logo em { color: var(--gold); font-style: italic; }
+.nav-links { display: flex; gap: 44px; list-style: none; }
+.nav-links a {
+  font-family: var(--sans); font-size: 10px; font-weight: 500;
+  letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--muted); text-decoration: none;
+  transition: color 0.3s ease;
+  position: relative;
+}
+.nav-links a::after {
+  content: ''; position: absolute; bottom: -4px; left: 0;
+  width: 0; height: 1px; background: var(--gold);
+  transition: width 0.4s cubic-bezier(0.4,0,0.2,1);
+}
+.nav-links a:hover { color: var(--gold-light); }
+.nav-links a:hover::after { width: 100%; }
+.nav-cta {
+  font-family: var(--sans); font-size: 10px; font-weight: 500;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--gold); border: 1px solid var(--gold);
+  padding: 10px 24px; text-decoration: none;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+.nav-cta:hover { background: var(--gold); color: var(--dark); }
+
+/* ── HERO ── */
+#hero {
+  height: 100vh; position: relative;
+  display: flex; align-items: center;
+  overflow: hidden;
+}
+.hero-bg {
+  position: absolute; inset: 0;
+  background: linear-gradient(135deg, #0E0D0B 0%, #1a1812 50%, #0E0D0B 100%);
+}
+.hero-bg-img {
+  position: absolute; inset: 0;
+  background-image:
+    repeating-linear-gradient(0deg, transparent, transparent 80px, rgba(201,168,76,0.025) 80px, rgba(201,168,76,0.025) 81px),
+    repeating-linear-gradient(90deg, transparent, transparent 80px, rgba(201,168,76,0.025) 80px, rgba(201,168,76,0.025) 81px);
+}
+.hero-noise {
+  position: absolute; inset: 0; opacity: 0.04;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 200px 200px;
+}
+.hero-line-left {
+  position: absolute; left: 60px; top: 0; bottom: 0; width: 1px;
+  background: linear-gradient(to bottom, transparent, var(--border) 20%, var(--border) 80%, transparent);
+}
+.hero-line-right {
+  position: absolute; right: 60px; top: 0; bottom: 0; width: 1px;
+  background: linear-gradient(to bottom, transparent, var(--border) 20%, var(--border) 80%, transparent);
+}
+.hero-content {
+  position: relative; z-index: 2;
+  padding: 0 120px;
+  max-width: 900px;
+}
+.hero-eyebrow {
+  font-family: var(--sans); font-size: 10px; font-weight: 500;
+  letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold);
+  margin-bottom: 28px;
+  opacity: 0; transform: translateY(16px);
+  animation: fadeUp 0.9s ease 2.2s forwards;
+  display: flex; align-items: center; gap: 16px;
+}
+.hero-eyebrow::before {
+  content: ''; display: block; width: 40px; height: 1px; background: var(--gold);
+}
+.hero-title {
+  font-family: var(--serif); font-weight: 300;
+  font-size: clamp(52px, 7vw, 100px);
+  line-height: 1.05; letter-spacing: -0.01em;
+  margin-bottom: 32px;
+  overflow: hidden;
+}
+.hero-title-line {
+  display: block;
+  opacity: 0; transform: translateY(100%);
+  animation: slideUp 1s cubic-bezier(0.16,1,0.3,1) forwards;
+}
+.hero-title-line:nth-child(1) { animation-delay: 2.4s; }
+.hero-title-line:nth-child(2) { animation-delay: 2.6s; }
+.hero-title-line:nth-child(3) { animation-delay: 2.8s; }
+.hero-title em { color: var(--gold); font-style: italic; }
+@keyframes slideUp {
+  to { opacity: 1; transform: translateY(0); }
+}
+.hero-desc {
+  font-size: 13px; font-weight: 300; line-height: 2;
+  color: var(--muted); max-width: 420px;
+  margin-bottom: 52px; letter-spacing: 0.04em;
+  opacity: 0; transform: translateY(20px);
+  animation: fadeUp 1s ease 3.2s forwards;
+}
+.hero-actions {
+  display: flex; align-items: center; gap: 36px;
+  opacity: 0; animation: fadeUp 1s ease 3.4s forwards;
+}
+.btn-gold {
+  font-family: var(--sans); font-size: 10px; font-weight: 500;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--dark); background: var(--gold);
+  padding: 16px 40px; text-decoration: none;
+  transition: background 0.3s ease, transform 0.3s ease;
+  display: inline-block;
+}
+.btn-gold:hover { background: var(--gold-light); transform: translateY(-2px); }
+.btn-ghost {
+  font-family: var(--sans); font-size: 10px; font-weight: 500;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--cream); text-decoration: none;
+  display: flex; align-items: center; gap: 12px;
+  transition: color 0.3s ease;
+}
+.btn-ghost:hover { color: var(--gold); }
+.btn-ghost-arrow {
+  width: 40px; height: 1px; background: currentColor;
+  transition: width 0.4s ease;
+  position: relative;
+}
+.btn-ghost-arrow::after {
+  content: ''; position: absolute; right: 0; top: 50%;
+  transform: translateY(-50%) rotate(45deg);
+  width: 7px; height: 7px;
+  border-top: 1px solid currentColor;
+  border-right: 1px solid currentColor;
+}
+.btn-ghost:hover .btn-ghost-arrow { width: 60px; }
+
+.hero-scroll {
+  position: absolute; bottom: 48px; left: 50%;
+  transform: translateX(-50%);
+  display: flex; flex-direction: column; align-items: center; gap: 12px;
+  opacity: 0; animation: fadeIn 1s ease 3.8s forwards;
+}
+.scroll-label {
+  font-size: 9px; letter-spacing: 0.3em; text-transform: uppercase;
+  color: var(--muted);
+}
+.scroll-line {
+  width: 1px; height: 60px;
+  background: linear-gradient(to bottom, var(--gold), transparent);
+  animation: scrollPulse 2s ease infinite;
+}
+@keyframes scrollPulse {
+  0%, 100% { transform: scaleY(1); opacity: 1; }
+  50% { transform: scaleY(0.6); opacity: 0.5; }
+}
+.hero-stats {
+  position: absolute; right: 80px; bottom: 80px;
+  display: flex; flex-direction: column; gap: 28px;
+  opacity: 0; animation: fadeUp 1s ease 3.6s forwards;
+}
+.stat-item { text-align: right; }
+.stat-num {
+  font-family: var(--serif); font-size: 38px; font-weight: 300;
+  color: var(--cream); line-height: 1;
+}
+.stat-num em { color: var(--gold); font-style: normal; }
+.stat-label {
+  font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--muted); margin-top: 4px;
+}
+
+/* ── MARQUEE ── */
+.marquee-section {
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: 20px 0;
+  overflow: hidden;
+  background: rgba(201,168,76,0.03);
+}
+.marquee-track {
+  display: flex; gap: 0; white-space: nowrap;
+  animation: marquee 24s linear infinite;
+}
+.marquee-item {
+  font-family: var(--serif); font-size: 13px; font-weight: 300;
+  letter-spacing: 0.1em; color: var(--muted);
+  padding: 0 40px;
+  display: flex; align-items: center; gap: 40px;
+}
+.marquee-item::after {
+  content: '✦'; color: var(--gold); font-size: 8px;
+}
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+/* ── ABOUT ── */
+#about {
+  padding: 140px 120px;
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 80px; align-items: center;
+  position: relative;
+}
+.about-label {
+  font-size: 9px; letter-spacing: 0.3em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 24px;
+  display: flex; align-items: center; gap: 16px;
+}
+.about-label::before { content: '01'; color: var(--muted); font-size: 11px; }
+.about-heading {
+  font-family: var(--serif); font-size: clamp(36px, 4vw, 58px);
+  font-weight: 300; line-height: 1.2;
+  margin-bottom: 36px;
+}
+.about-heading em { color: var(--gold); font-style: italic; }
+.about-text {
+  font-size: 13px; font-weight: 300; line-height: 2.1;
+  color: var(--muted); margin-bottom: 20px; letter-spacing: 0.03em;
+}
+.about-sig {
+  font-family: var(--serif); font-size: 28px; font-weight: 300;
+  font-style: italic; color: var(--gold-light);
+  margin-top: 40px;
+}
+.about-visual {
+  position: relative; padding: 32px;
+}
+.about-photo-wrap {
+  position: relative; overflow: hidden;
+  aspect-ratio: 3/4;
+  background: #1a1812;
+}
+.about-photo-wrap img {
+  width: 100%; height: 100%; object-fit: cover;
+  display: block;
+  transition: transform 0.8s cubic-bezier(0.4,0,0.2,1);
+}
+.about-photo-wrap:hover img { transform: scale(1.04); }
+.about-photo-placeholder {
+  position: absolute; inset: 0;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center; gap: 12px;
+}
+.about-photo-placeholder svg { stroke: var(--muted); fill: none; }
+.about-photo-placeholder p { font-size: 11px; color: var(--muted); letter-spacing: 0.12em; }
+.about-corner {
+  position: absolute; width: 60px; height: 60px;
+  border-color: var(--gold);
+  border-style: solid;
+  opacity: 0.4;
+}
+.corner-tl { top: 8px; left: 8px; border-width: 1px 0 0 1px; }
+.corner-br { bottom: 8px; right: 8px; border-width: 0 1px 1px 0; }
+.about-years {
+  position: absolute; bottom: 0; right: 0;
+  background: var(--dark); border: 1px solid var(--border);
+  padding: 24px 28px; text-align: center;
+}
+.years-num {
+  font-family: var(--serif); font-size: 52px; font-weight: 300;
+  color: var(--gold); line-height: 1;
+}
+.years-label { font-size: 9px; letter-spacing: 0.2em; color: var(--muted); margin-top: 6px; }
+
+/* ── SKILLS ── */
+#skills {
+  padding: 120px 120px;
+  background: #111009;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+.section-header { margin-bottom: 72px; }
+.section-label-line {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 20px;
+}
+.section-num { font-size: 11px; color: var(--muted); letter-spacing: 0.2em; }
+.section-tag {
+  font-size: 9px; letter-spacing: 0.3em; text-transform: uppercase;
+  color: var(--gold);
+}
+.section-heading {
+  font-family: var(--serif); font-size: clamp(32px, 4vw, 54px);
+  font-weight: 300; line-height: 1.15;
+}
+.section-heading em { color: var(--gold); font-style: italic; }
+.skills-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 1px; background: var(--border);
+}
+.skill-item {
+  background: #111009; padding: 44px 36px;
+  position: relative; overflow: hidden;
+  transition: background 0.4s ease;
+  cursor: default;
+}
+.skill-item::before {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(135deg, rgba(201,168,76,0.06), transparent);
+  opacity: 0; transition: opacity 0.4s ease;
+}
+.skill-item:hover { background: #161410; }
+.skill-item:hover::before { opacity: 1; }
+.skill-num {
+  font-family: var(--serif); font-size: 52px; font-weight: 300;
+  color: rgba(201,168,76,0.12); line-height: 1;
+  margin-bottom: 20px; letter-spacing: -0.02em;
+}
+.skill-name {
+  font-family: var(--serif); font-size: 22px; font-weight: 300;
+  margin-bottom: 12px; letter-spacing: 0.03em;
+}
+.skill-desc {
+  font-size: 12px; font-weight: 300; line-height: 1.9;
+  color: var(--muted); letter-spacing: 0.03em;
+}
+.skill-line {
+  position: absolute; bottom: 0; left: 0; right: 0; height: 1px;
+  background: var(--gold); transform: scaleX(0); transform-origin: left;
+  transition: transform 0.5s cubic-bezier(0.4,0,0.2,1);
+}
+.skill-item:hover .skill-line { transform: scaleX(1); }
+
+/* ── PROJECTS ── */
+#projects { padding: 120px 0; }
+.projects-header { padding: 0 120px; margin-bottom: 72px; }
+.projects-list { display: flex; flex-direction: column; gap: 0; }
+.project-row {
+  display: grid; grid-template-columns: 100px 1fr 320px 120px;
+  align-items: center; gap: 40px;
+  padding: 36px 120px;
+  border-top: 1px solid var(--border);
+  cursor: pointer; position: relative;
+  transition: background 0.4s ease;
+  overflow: hidden;
+}
+.project-row:last-child { border-bottom: 1px solid var(--border); }
+.project-row::before {
+  content: ''; position: absolute; inset: 0;
+  background: rgba(201,168,76,0.03);
+  transform: translateX(-100%);
+  transition: transform 0.5s cubic-bezier(0.4,0,0.2,1);
+}
+.project-row:hover::before { transform: translateX(0); }
+.project-idx {
+  font-family: var(--serif); font-size: 13px; font-weight: 300;
+  color: var(--muted);
+}
+.project-name {
+  font-family: var(--serif); font-size: 28px; font-weight: 300;
+  letter-spacing: 0.01em;
+  transition: color 0.3s ease;
+}
+.project-row:hover .project-name { color: var(--gold-light); }
+.project-tag-inline {
+  font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--muted); display: flex; align-items: center; gap: 10px;
+}
+.project-tag-inline::before {
+  content: ''; width: 20px; height: 1px; background: var(--muted);
+}
+.project-year {
+  font-family: var(--serif); font-size: 16px; font-weight: 300;
+  color: var(--muted); text-align: right;
+}
+.project-hover-img {
+  position: fixed; z-index: 200;
+  width: 280px; height: 340px; pointer-events: none;
+  opacity: 0; transition: opacity 0.3s ease;
+  overflow: hidden;
+}
+.project-hover-img img {
+  width: 100%; height: 100%; object-fit: cover;
+}
+.project-hover-img .img-placeholder {
+  width: 100%; height: 100%;
+  background: #1a1812;
+  display: flex; align-items: center; justify-content: center;
+  flex-direction: column; gap: 12px;
+}
+.project-hover-img .img-placeholder svg { stroke: var(--muted); fill: none; }
+.project-hover-img .img-placeholder p { font-size: 11px; color: var(--muted); }
+
+/* ── PROCESS ── */
+#process {
+  padding: 140px 120px;
+  background: #0a0907;
+  border-top: 1px solid var(--border);
+}
+.process-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 0; margin-top: 72px;
+  border: 1px solid var(--border);
+}
+.process-step {
+  padding: 48px 36px;
+  border-right: 1px solid var(--border);
+  position: relative;
+  transition: background 0.4s ease;
+}
+.process-step:last-child { border-right: none; }
+.process-step:hover { background: rgba(201,168,76,0.03); }
+.process-num {
+  font-family: var(--serif); font-size: 68px; font-weight: 300;
+  color: rgba(201,168,76,0.08); line-height: 1; margin-bottom: 24px;
+}
+.process-step-name {
+  font-family: var(--serif); font-size: 20px; font-weight: 300;
+  margin-bottom: 16px; letter-spacing: 0.02em;
+}
+.process-step-desc {
+  font-size: 12px; font-weight: 300; line-height: 1.9;
+  color: var(--muted); letter-spacing: 0.03em;
+}
+.process-step-icon {
+  position: absolute; top: 36px; right: 32px;
+  width: 32px; height: 32px;
+}
+.process-step-icon svg { stroke: var(--gold); fill: none; stroke-width: 1; opacity: 0.5; }
+
+/* ── CONTACT ── */
+#contact {
+  padding: 140px 120px;
+  border-top: 1px solid var(--border);
+  display: grid; grid-template-columns: 1fr 1fr; gap: 100px;
+  align-items: start;
+}
+.contact-left {}
+.contact-big {
+  font-family: var(--serif); font-size: clamp(42px, 5vw, 72px);
+  font-weight: 300; line-height: 1.15; margin-bottom: 40px;
+}
+.contact-big em { color: var(--gold); font-style: italic; }
+.contact-tagline {
+  font-size: 13px; font-weight: 300; color: var(--muted);
+  line-height: 1.9; max-width: 400px; margin-bottom: 52px;
+}
+.contact-links { display: flex; flex-direction: column; gap: 20px; }
+.contact-link {
+  display: flex; align-items: center; gap: 18px;
+  font-size: 13px; font-weight: 300; color: var(--cream);
+  text-decoration: none; letter-spacing: 0.04em;
+  transition: color 0.3s ease;
+  padding-bottom: 20px; border-bottom: 1px solid var(--border);
+}
+.contact-link:hover { color: var(--gold); }
+.contact-link-icon {
+  width: 36px; height: 36px; border: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+  transition: border-color 0.3s ease, background 0.3s ease;
+  flex-shrink: 0;
+}
+.contact-link:hover .contact-link-icon {
+  border-color: var(--gold);
+  background: rgba(201,168,76,0.08);
+}
+.contact-link-icon svg { stroke: var(--gold); fill: none; width: 14px; height: 14px; stroke-width: 1.5; }
+.contact-link-label { font-size: 9px; letter-spacing: 0.2em; color: var(--muted); display: block; margin-bottom: 3px; }
+
+.contact-form { padding-top: 8px; }
+.form-group { margin-bottom: 28px; position: relative; }
+.form-label-float {
+  font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--muted); display: block; margin-bottom: 10px;
+}
+.form-input {
+  width: 100%; background: transparent;
+  border: none; border-bottom: 1px solid var(--border);
+  padding: 12px 0; font-family: var(--sans);
+  font-size: 14px; font-weight: 300; color: var(--cream);
+  outline: none; letter-spacing: 0.04em;
+  transition: border-color 0.3s ease;
+}
+.form-input:focus { border-bottom-color: var(--gold); }
+.form-input::placeholder { color: rgba(122,117,105,0.5); }
+.form-textarea {
+  resize: none; height: 100px; display: block;
+}
+.form-line {
+  position: absolute; bottom: 0; left: 0;
+  width: 0; height: 1px; background: var(--gold);
+  transition: width 0.5s ease;
+}
+.form-input:focus ~ .form-line { width: 100%; }
+.btn-submit {
+  font-family: var(--sans); font-size: 10px; font-weight: 500;
+  letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--dark); background: var(--gold);
+  border: none; padding: 16px 48px; cursor: none;
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+.btn-submit:hover { background: var(--gold-light); transform: translateY(-2px); }
+
+/* ── FOOTER ── */
+footer {
+  padding: 36px 120px;
+  border-top: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: space-between;
+  background: #0a0907;
+}
+.footer-logo {
+  font-family: var(--serif); font-size: 18px; font-weight: 300;
+  letter-spacing: 0.1em; color: var(--muted);
+}
+.footer-logo em { color: var(--gold); font-style: italic; }
+.footer-copy { font-size: 10px; letter-spacing: 0.14em; color: rgba(122,117,105,0.5); }
+.footer-links { display: flex; gap: 32px; }
+.footer-links a {
+  font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--muted); text-decoration: none;
+  transition: color 0.3s ease;
+}
+.footer-links a:hover { color: var(--gold); }
+
+/* ── SCROLL REVEAL ── */
+.reveal {
+  opacity: 0; transform: translateY(40px);
+  transition: opacity 0.9s cubic-bezier(0.16,1,0.3,1),
+              transform 0.9s cubic-bezier(0.16,1,0.3,1);
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal-left {
+  opacity: 0; transform: translateX(-40px);
+  transition: opacity 0.9s cubic-bezier(0.16,1,0.3,1),
+              transform 0.9s cubic-bezier(0.16,1,0.3,1);
+}
+.reveal-left.visible { opacity: 1; transform: translateX(0); }
+.reveal-right {
+  opacity: 0; transform: translateX(40px);
+  transition: opacity 0.9s cubic-bezier(0.16,1,0.3,1),
+              transform 0.9s cubic-bezier(0.16,1,0.3,1);
+}
+.reveal-right.visible { opacity: 1; transform: translateX(0); }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 900px) {
+  nav { padding: 24px 32px; }
+  nav.scrolled { padding: 16px 32px; }
+  .nav-links { display: none; }
+  .hero-content { padding: 0 40px; }
+  .hero-stats { display: none; }
+  #about, #contact { padding: 80px 40px; grid-template-columns: 1fr; }
+  #skills, #process { padding: 80px 40px; }
+  .skills-grid { grid-template-columns: 1fr; }
+  .process-grid { grid-template-columns: 1fr 1fr; }
+  .projects-header { padding: 0 40px; }
+  .project-row { padding: 28px 40px; grid-template-columns: 60px 1fr; }
+  .project-tag-inline, .project-year { display: none; }
+  footer { padding: 28px 40px; flex-direction: column; gap: 16px; text-align: center; }
+  .footer-links { display: none; }
+}
+
+/* ── PROJECT MODAL ── */
+#project-modal {
+  position: fixed; inset: 0; z-index: 2000;
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0; pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+#project-modal.open { opacity: 1; pointer-events: all; }
+.modal-backdrop {
+  position: absolute; inset: 0;
+  background: rgba(10,9,7,0.92);
+  backdrop-filter: blur(8px);
+}
+.modal-box {
+  position: relative; z-index: 1;
+  background: #111009;
+  border: 1px solid var(--border);
+  width: min(900px, 92vw);
+  max-height: 88vh;
+  overflow-y: auto;
+  transform: translateY(32px) scale(0.97);
+  transition: transform 0.45s cubic-bezier(0.16,1,0.3,1);
+  scrollbar-width: thin; scrollbar-color: var(--gold-dim) transparent;
+}
+#project-modal.open .modal-box { transform: translateY(0) scale(1); }
+.modal-close {
+  position: absolute; top: 24px; right: 28px;
+  width: 36px; height: 36px; cursor: none;
+  border: 1px solid var(--border);
+  background: transparent; color: var(--muted);
+  font-size: 18px; display: flex; align-items: center; justify-content: center;
+  transition: border-color 0.3s, color 0.3s;
+  z-index: 10;
+}
+.modal-close:hover { border-color: var(--gold); color: var(--gold); }
+.modal-imgs {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 1px; background: var(--border);
+}
+.modal-img-slot {
+  aspect-ratio: 4/3; overflow: hidden;
+  background: #0d0c0a; position: relative;
+  cursor: default;
+}
+.modal-img-slot img {
+  width: 100%; height: 100%; object-fit: cover; display: block;
+  transition: transform 0.6s ease;
+}
+.modal-img-slot:hover img { transform: scale(1.05); }
+.modal-img-placeholder {
+  position: absolute; inset: 0;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center; gap: 8px;
+}
+.modal-img-placeholder svg { stroke: #333; fill: none; }
+.modal-img-placeholder p {
+  font-size: 10px; letter-spacing: 0.14em; color: #333;
+}
+.modal-img-slot-main { grid-column: span 2; aspect-ratio: 16/9; }
+.modal-body { padding: 44px 48px; }
+.modal-tag {
+  font-size: 9px; letter-spacing: 0.26em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 16px;
+  display: flex; align-items: center; gap: 12px;
+}
+.modal-tag::before { content: ''; width: 24px; height: 1px; background: var(--gold); }
+.modal-title {
+  font-family: var(--serif); font-size: clamp(26px, 4vw, 40px);
+  font-weight: 300; margin-bottom: 8px; line-height: 1.2;
+}
+.modal-aesthetic {
+  font-family: var(--serif); font-size: 16px; font-style: italic;
+  color: var(--gold-light); margin-bottom: 32px; line-height: 1.6;
+}
+.modal-meta {
+  display: flex; gap: 0; margin-bottom: 36px;
+  border: 1px solid var(--border);
+}
+.modal-meta-item {
+  flex: 1; padding: 18px 20px;
+  border-right: 1px solid var(--border);
+}
+.modal-meta-item:last-child { border-right: none; }
+.modal-meta-label {
+  font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--muted); margin-bottom: 6px;
+}
+.modal-meta-val { font-size: 14px; font-weight: 300; letter-spacing: 0.03em; }
+.modal-overview-label {
+  font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--muted); margin-bottom: 12px;
+}
+.modal-overview {
+  font-size: 13px; font-weight: 300; line-height: 2;
+  color: rgba(245,240,232,0.75); margin-bottom: 28px;
+}
+.modal-scope-label {
+  font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--muted); margin-bottom: 12px;
+}
+.modal-scope {
+  font-size: 13px; font-weight: 300; line-height: 2;
+  color: rgba(245,240,232,0.75);
+}
+.modal-role {
+  margin-top: 28px; padding-top: 28px;
+  border-top: 1px solid var(--border);
+  display: flex; align-items: center; gap: 16px;
+}
+.modal-role-label {
+  font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--muted);
+}
+.modal-role-val {
+  font-size: 13px; color: var(--gold-light); letter-spacing: 0.04em;
+}
+.project-row { cursor: pointer; }
+
+
+/* ── COMPACT GALLERY: many small thumbnails, grow on hover ── */
+.modal-imgs {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 4px;
+  background: var(--border);
+  padding: 4px;
+  max-height: 78vh;
+  overflow-y: auto;
+}
+.modal-imgs::-webkit-scrollbar { width: 6px; }
+.modal-imgs::-webkit-scrollbar-track { background: #0d0c0a; }
+.modal-imgs::-webkit-scrollbar-thumb { background: var(--gold-dim); border-radius: 3px; }
+
+.modal-img-slot {
+  aspect-ratio: 1/1;
+  overflow: visible;
+  background: #0d0c0a;
+  position: relative;
+  cursor: pointer;
+  transition: transform 0.35s cubic-bezier(0.4,0,0.2,1),
+              box-shadow 0.35s ease,
+              z-index 0s linear 0.35s;
+  z-index: 1;
+}
+.modal-img-slot img,
+.modal-img-slot video {
+  width: 100%; height: 100%;
+  object-fit: cover; display: block;
+  transition: none;
+}
+.modal-img-slot:hover {
+  transform: scale(2.2);
+  z-index: 50;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.7), 0 0 0 1px var(--gold);
+  transition: transform 0.35s cubic-bezier(0.4,0,0.2,1),
+              box-shadow 0.35s ease,
+              z-index 0s linear 0s;
+}
+.modal-img-slot:hover img { transform: none; }
+.modal-img-slot-main {
+  grid-column: span 5;
+  aspect-ratio: 16/9;
+}
+.modal-img-slot-main:hover { transform: scale(1.02); }
+
+/* Video slots get a subtle play indicator that fades while playing */
+.modal-img-slot.modal-video-slot::after {
+  content: "▶";
+  position: absolute; top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 36px; height: 36px; border-radius: 50%;
+  background: rgba(0,0,0,0.55); color: var(--gold);
+  font-size: 13px; line-height: 36px; text-align: center;
+  border: 1px solid rgba(201,168,76,0.5);
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+}
+.modal-img-slot.modal-video-slot.is-playing::after { opacity: 0; }
+
+/* Modal box can be wider now since thumbnails are smaller */
+.modal-box { width: min(1100px, 94vw); }
+
+/* ── LIGHTBOX ── */
+#lightbox {
+  position: fixed; inset: 0; z-index: 10001;
+  background: rgba(0,0,0,0.95);
+  display: none; align-items: center; justify-content: center;
+  padding: 40px;
+}
+#lightbox.open { display: flex; }
+#lightbox img, #lightbox video {
+  max-width: 95vw; max-height: 90vh;
+  object-fit: contain; display: block;
+}
+#lightbox .lb-close {
+  position: absolute; top: 24px; right: 32px;
+  width: 44px; height: 44px; border-radius: 50%;
+  background: rgba(0,0,0,0.5); color: var(--cream);
+  border: 1px solid var(--gold); font-size: 20px;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+}
+
+@media (max-width: 900px) {
+  .modal-imgs { grid-template-columns: repeat(3, 1fr); }
+  .modal-img-slot-main { grid-column: span 3; }
+  .modal-img-slot:hover { transform: scale(1.6); }
+}
+
+</style>
+</head>
+<body>
+
+<!-- CURSOR -->
+<div id="cursor">
+  <div class="cursor-ring" id="cursorRing"></div>
+  <div class="cursor-dot" id="cursorDot"></div>
+</div>
+
+
+
+<!-- LOADER -->
+<div id="loader">
+  <div class="loader-logo">Hossein <em>Ehsanpour</em></div>
+  <div class="loader-bar-wrap"><div class="loader-bar" id="loaderBar"></div></div>
+  <div class="loader-pct" id="loaderPct">0%</div>
+</div>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="#" class="nav-logo"></a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Expertise</a></li>
+    <li><a href="#projects">Work</a></li>
+    <li><a href="#process">Process</a></li>
+  </ul>
+  <a href="#contact" class="nav-cta">Get in Touch</a>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-bg-img"></div>
+  <div class="hero-noise"></div>
+  <div class="hero-line-left"></div>
+  <div class="hero-line-right"></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">Construction · Site Supervision · Interior Renovation</p>
+    <h1 class="hero-title">
+      <span class="hero-title-line">Built with</span>
+      <span class="hero-title-line">Purpose,</span>
+      <span class="hero-title-line"><em>Designed to Last.</em></span>
+    </h1>
+    <p class="hero-desc">Over 8 years delivering residential and commercial projects across Iran and Armenia — from high-rise towers to refined interior renovations.</p>
+    <div class="hero-actions">
+      <a href="#projects" class="btn-gold" onclick="event.preventDefault();document.getElementById('projects').scrollIntoView({behavior:'smooth'})">View Portfolio</a>
+      <a href="#about" class="btn-ghost" onclick="event.preventDefault();document.getElementById('about').scrollIntoView({behavior:'smooth'})">
+        <span class="btn-ghost-arrow"></span>
+        Discover More
+      </a>
+    </div>
+  </div>
+  <div class="hero-stats">
+    <div class="stat-item">
+      <div class="stat-num"><em>10</em>+</div>
+      <div class="stat-label">Projects Completed</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num"><em>8</em>+</div>
+      <div class="stat-label">Years of Experience</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num"><em>100k</em></div>
+      <div class="stat-label">sqm Managed</div>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <span class="scroll-label">Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-section">
+  <div class="marquee-track" id="marquee">
+    <span class="marquee-item">Civil Engineering</span>
+    <span class="marquee-item">Interior Design</span>
+    <span class="marquee-item">Renovation & Restoration</span>
+    <span class="marquee-item">Structural Planning</span>
+    <span class="marquee-item">Space Optimization</span>
+    <span class="marquee-item">Project Management</span>
+    <span class="marquee-item">Material Consulting</span>
+    <span class="marquee-item">Civil Engineering</span>
+    <span class="marquee-item">Interior Design</span>
+    <span class="marquee-item">Renovation & Restoration</span>
+    <span class="marquee-item">Structural Planning</span>
+    <span class="marquee-item">Space Optimization</span>
+    <span class="marquee-item">Project Management</span>
+    <span class="marquee-item">Material Consulting</span>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-left reveal-left">
+    <p class="about-label">About</p>
+    <h2 class="about-heading">Building with<br><em>Precision</em> & Purpose</h2>
+    <p class="about-text">
+      I am a construction professional with over 8 years of hands-on experience in residential and commercial projects, specializing in execution, site supervision, and interior renovation.
+    </p>
+    <p class="about-text">
+      From high-rise towers in Mashhad to refined commercial conversions, I bring the same commitment to every project: structural precision, intelligent design, and seamless delivery from concept to completion.
+    </p>
+    <div class="about-sig">Hossein Ehsanpour</div>
+  </div>
+  <div class="about-visual reveal-right">
+    <div class="about-photo-wrap"><img src="images/profile/about-cityscape.svg" alt="Architectural cityscape" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+    <div class="about-corner corner-tl"></div>
+    <div class="about-corner corner-br"></div>
+    <div class="about-years">
+      <!-- EDIT: Replace 10 with your years of experience -->
+      <div class="years-num">8</div>
+      <div class="years-label">Years of Experience</div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-header reveal">
+    <div class="section-label-line">
+      <span class="section-num">02</span>
+      <span class="section-tag">Expertise</span>
+    </div>
+    <h2 class="section-heading">Fields of <em>Mastery</em></h2>
+  </div>
+  <div class="skills-grid">
+    <div class="skill-item reveal">
+      <div class="skill-num">01</div>
+      <div class="skill-name">Interior Design</div>
+      <div class="skill-desc">Conceptualizing and realizing spaces that harmonize form, function, light, and material — from concept board to final installation.</div>
+      <div class="skill-line"></div>
+    </div>
+    <div class="skill-item reveal" style="transition-delay: 0.1s">
+      <div class="skill-num">02</div>
+      <div class="skill-name">Civil Construction</div>
+      <div class="skill-desc">Full-cycle project execution — site supervision, structural coordination, contractor management, and quality assurance.</div>
+      <div class="skill-line"></div>
+    </div>
+    <div class="skill-item reveal" style="transition-delay: 0.2s">
+      <div class="skill-num">03</div>
+      <div class="skill-name">Renovation</div>
+      <div class="skill-desc">Breathing new life into existing structures while preserving their character — meticulous planning and minimal disruption.</div>
+      <div class="skill-line"></div>
+    </div>
+    <div class="skill-item reveal" style="transition-delay: 0.3s">
+      <div class="skill-num">04</div>
+      <div class="skill-name">Project Management</div>
+      <div class="skill-desc">End-to-end ownership of timelines, budgets, and stakeholder communication — ensuring delivery on time, on spec.</div>
+      <div class="skill-line"></div>
+    </div>
+    <div class="skill-item reveal" style="transition-delay: 0.4s">
+      <div class="skill-num">05</div>
+      <div class="skill-name">Technical Drawing</div>
+      <div class="skill-desc">Precise construction documents and design drawings using AutoCAD, SketchUp, and hand drafting for every phase of a project.</div>
+      <div class="skill-line"></div>
+    </div>
+    <div class="skill-item reveal" style="transition-delay: 0.5s">
+      <div class="skill-num">06</div>
+      <div class="skill-name">Material Consulting</div>
+      <div class="skill-desc">Expert selection of materials balancing durability, aesthetics, and budget — with deep knowledge of local and imported sources.</div>
+      <div class="skill-line"></div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="projects-header reveal">
+    <div class="section-label-line">
+      <span class="section-num">03</span>
+      <span class="section-tag">Selected Work</span>
+    </div>
+    <h2 class="section-heading">Recent <em>Projects</em></h2>
+  </div>
+  <div class="projects-list">
+    <div class="project-row reveal" data-project="Baran Residential Tower — Mashhad">
+      <div class="project-idx">01</div>
+      <div class="project-name">Baran Residential Tower</div>
+      <div class="project-tag-inline">High-Rise · 20 Floors</div>
+      <div class="project-year">2016–2025</div>
+    </div>
+    <div class="project-row reveal" data-project="Armitaj Plaza Development — Mashhad">
+      <div class="project-idx">02</div>
+      <div class="project-name">Armitaj Plaza Development</div>
+      <div class="project-tag-inline">Mixed-Use · 100,000 m²</div>
+      <div class="project-year">2024 ↗</div>
+    </div>
+    <div class="project-row reveal" data-project="Villa Conversion to Engineering Office — Mashhad">
+      <div class="project-idx">03</div>
+      <div class="project-name">Villa → Engineering Office</div>
+      <div class="project-tag-inline">Commercial Renovation · 600 m²</div>
+      <div class="project-year">2024</div>
+    </div>
+    <div class="project-row reveal" data-project="Large-Scale Residential Unit Renovation — Mashhad">
+      <div class="project-idx">04</div>
+      <div class="project-name">Residential Unit Renovation</div>
+      <div class="project-tag-inline">Interior · 500 m²</div>
+      <div class="project-year">2025</div>
+    </div>
+    <div class="project-row reveal" data-project="Across the Field">
+      <div class="project-idx">05</div>
+      <div class="project-name">Across the Field</div>
+      <div class="project-tag-inline">Construction · Various Works</div>
+      <div class="project-year"></div>
+    </div>
+    <div class="project-row reveal" data-project="Hybrid Structural Residential Building — Mashhad">
+      <div class="project-idx">06</div>
+      <div class="project-name">Hybrid Structural Building</div>
+      <div class="project-tag-inline">Residential · 9 Floors</div>
+      <div class="project-year">2019</div>
+    </div>
+    <div class="project-row reveal" data-project="Beauty Salon Renovation — Mashhad">
+      <div class="project-idx">07</div>
+      <div class="project-name">Beauty Salon Renovation</div>
+      <div class="project-tag-inline">Commercial Interior · 100 m²</div>
+      <div class="project-year">2025</div>
+    </div>
+    <div class="project-row reveal" data-project="Gold Sales Office — Caspian Commercial Complex, Mashhad">
+      <div class="project-idx">08</div>
+      <div class="project-name">Gold Sales Office</div>
+      <div class="project-tag-inline">Commercial · 60 m²</div>
+      <div class="project-year">2025</div>
+    </div>
+    <div class="project-row reveal" data-project="Leather Retail Store — Armitaj Commercial Center, Mashhad">
+      <div class="project-idx">09</div>
+      <div class="project-name">Leather Retail Store</div>
+      <div class="project-tag-inline">Retail Conversion</div>
+      <div class="project-year">2025</div>
+    </div>
+    <div class="project-row reveal" data-project="Baran Tower Unit Renovation — Mashhad">
+      <div class="project-idx">10</div>
+      <div class="project-name">Baran Tower Unit Renovation</div>
+      <div class="project-tag-inline">Interior · 250 m²</div>
+      <div class="project-year">2022</div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section id="process">
+  <div class="section-header reveal">
+    <div class="section-label-line">
+      <span class="section-num">04</span>
+      <span class="section-tag">How I Work</span>
+    </div>
+    <h2 class="section-heading">The <em>Process</em></h2>
+  </div>
+  <div class="process-grid">
+    <div class="process-step reveal">
+      <div class="process-step-icon">
+        <svg width="32" height="32" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+      </div>
+      <div class="process-num">01</div>
+      <div class="process-step-name">Discovery</div>
+      <div class="process-step-desc">Understanding your vision, requirements, and constraints through in-depth consultation and site analysis.</div>
+    </div>
+    <div class="process-step reveal" style="transition-delay:0.1s">
+      <div class="process-step-icon">
+        <svg width="32" height="32" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+      </div>
+      <div class="process-num">02</div>
+      <div class="process-step-name">Concept Design</div>
+      <div class="process-step-desc">Developing schematic plans, mood boards, and material palettes that articulate the design direction clearly.</div>
+    </div>
+    <div class="process-step reveal" style="transition-delay:0.2s">
+      <div class="process-step-icon">
+        <svg width="32" height="32" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+      </div>
+      <div class="process-num">03</div>
+      <div class="process-step-name">Execution</div>
+      <div class="process-step-desc">On-site supervision, contractor coordination, and rigorous quality control throughout every phase of construction.</div>
+    </div>
+    <div class="process-step reveal" style="transition-delay:0.3s">
+      <div class="process-step-icon">
+        <svg width="32" height="32" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+      </div>
+      <div class="process-num">04</div>
+      <div class="process-step-name">Handover</div>
+      <div class="process-step-desc">Final walkthrough, documentation delivery, and post-completion support to ensure your complete satisfaction.</div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-left reveal-left">
+    <h2 class="contact-big">Let's Build<br>Something <em>Together.</em></h2>
+    <p class="contact-tagline">Have a project in mind? I'd love to hear about it. Reach out and let's explore what we can create together.</p>
+    <div class="contact-links">
+      <!-- EDIT: Replace with your actual contact details -->
+      <a href="tel:+37441122274" class="contact-link">
+        <div class="contact-link-icon">
+          <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.45 2 2 0 0 1 3.59 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.91a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 18z"/></svg>
+        </div>
+        <div>
+          <span class="contact-link-label">Phone</span>
+          +374 41 122 274
+        </div>
+      </a>
+      <a href="mailto:hossein.ehsanpour@gmail.com" class="contact-link">
+        <div class="contact-link-icon">
+          <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        </div>
+        <div>
+          <span class="contact-link-label">Email</span>
+          hossein.ehsanpour@gmail.com
+        </div>
+      </a>
+      <a href="#" class="contact-link">
+        <div class="contact-link-icon">
+          <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        </div>
+        <div>
+          <span class="contact-link-label">Location</span>
+          Yerevan, Armenia
+        </div>
+      </a>
+    </div>
+  </div>
+  <div class="contact-form reveal-right">
+    <div class="form-group">
+      <label class="form-label-float">Your Name</label>
+      <input type="text" class="form-input" placeholder="Full name">
+      <span class="form-line"></span>
+    </div>
+    <div class="form-group">
+      <label class="form-label-float">Email Address</label>
+      <input type="email" class="form-input" placeholder="your@email.com">
+      <span class="form-line"></span>
+    </div>
+    <div class="form-group">
+      <label class="form-label-float">Project Type</label>
+      <input type="text" class="form-input" placeholder="e.g. Residential Renovation">
+      <span class="form-line"></span>
+    </div>
+    <div class="form-group">
+      <label class="form-label-float">Message</label>
+      <textarea class="form-input form-textarea" placeholder="Tell me about your project..."></textarea>
+      <span class="form-line"></span>
+    </div>
+    <button class="btn-submit">Send Message</button>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Hossein <em>Ehsanpour</em></div>
+  <p class="footer-copy">© 2025 Hossein Ehsanpour — All Rights Reserved</p>
+  <div class="footer-links">
+    <a href="#about">About</a>
+    <a href="#projects">Work</a>
+    <a href="#contact">Contact</a>
+  </div>
+</footer>
+
+<script>
+// ── LOADER ──
+(function(){
+  const loader = document.getElementById('loader');
+  const pct = document.getElementById('loaderPct');
+  let n = 0;
+  const iv = setInterval(() => {
+    n = Math.min(n + Math.random() * 12, 99);
+    pct.textContent = Math.floor(n) + '%';
+  }, 100);
+  window.addEventListener('load', () => {
+    clearInterval(iv);
+    pct.textContent = '100%';
+    setTimeout(() => {
+      loader.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+      loader.style.opacity = '0';
+      loader.style.transform = 'translateY(-20px)';
+      setTimeout(() => { loader.style.display = 'none'; }, 800);
+    }, 400);
+  });
+  setTimeout(() => {
+    clearInterval(iv);
+    pct.textContent = '100%';
+    loader.style.transition = 'opacity 0.8s ease';
+    loader.style.opacity = '0';
+    setTimeout(() => { loader.style.display = 'none'; }, 800);
+  }, 2800);
+})();
+
+// ── CURSOR ──
+(function(){
+  const dot = document.getElementById('cursorDot');
+  const ring = document.getElementById('cursorRing');
+  let mx = -100, my = -100, rx = -100, ry = -100;
+  document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+  function animate() {
+    dot.style.left = mx + 'px';
+    dot.style.top  = my + 'px';
+    rx += (mx - rx) * 0.12;
+    ry += (my - ry) * 0.12;
+    ring.style.left = rx + 'px';
+    ring.style.top  = ry + 'px';
+    requestAnimationFrame(animate);
+  }
+  animate();
+  const hovers = document.querySelectorAll('a, button, .project-row, .skill-item');
+  hovers.forEach(el => {
+    el.addEventListener('mouseenter', () => document.body.classList.add('hovering'));
+    el.addEventListener('mouseleave', () => document.body.classList.remove('hovering'));
+  });
+})();
+
+// ── NAV SCROLL ──
+(function(){
+  const nav = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 60);
+  });
+})();
+
+// ── SCROLL REVEAL ──
+(function(){
+  const els = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.12 });
+  els.forEach(el => io.observe(el));
+})();
+
+
+
+// ── PARALLAX HERO ──
+(function(){
+  const heroContent = document.querySelector('.hero-content');
+  window.addEventListener('scroll', () => {
+    const y = window.scrollY;
+    if (heroContent && y < window.innerHeight) {
+      heroContent.style.transform = `translateY(${y * 0.28}px)`;
+      heroContent.style.opacity = 1 - (y / (window.innerHeight * 0.75));
+    }
+  });
+})();
+</script>
+
+<!-- PROJECT MODALS -->
+<div id="project-modal">
+  <div class="modal-backdrop" onclick="closeModal()"></div>
+
+  <div class="modal-box" id="modal-baran-tower">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    
+    <div class="modal-imgs">
+      <div class="modal-img-slot modal-img-slot-main" onclick="openLightbox('images/baran-tower/WhatsApp%20Image%202026-04-27%20at%2012.31.17.jpeg','image')"><img src="images/baran-tower/WhatsApp%20Image%202026-04-27%20at%2012.31.17.jpeg" alt="" loading="lazy"></div>
+      <div class="modal-img-slot" onclick="openLightbox('images/baran-tower/WhatsApp%20Image%202026-04-27%20at%2012.31.18.jpeg','image')"><img src="images/baran-tower/WhatsApp%20Image%202026-04-27%20at%2012.31.18.jpeg" alt="" loading="lazy"></div>
+      <div class="modal-img-slot" onclick="openLightbox('images/baran-tower/WhatsApp%20Image%202026-04-27%20at%2012.31.20.jpeg','image')"><img src="images/baran-tower/WhatsApp%20Image%202026-04-27%20at%2012.31.20.jpeg" alt="" loading="lazy"></div>
+      <div class="modal-img-slot" onclick="openLightbox('images/baran-tower/WhatsApp%20Image%202026-04-27%20at%2012.31.22%20%281%29.jpeg','image')"><img src="images/baran-tower/WhatsApp%20Image%202026-04-27%20at%2012.31.22%20%281%29.jpeg" alt="" loading="lazy"></div>
+      <div class="modal-img-slot" onclick="openLightbox('images/baran-tower/WhatsApp%20Image%202026-04-27%20at%2012.31.22.jpeg','image')"><img src="images/baran-tower/WhatsApp%20Image%202026-04-27%20at%2012.31.22.jpeg" alt="" loading="lazy"></div>
+      <div class="modal-img-slot" onclick="openLightbox('images/baran-tower/WhatsApp%20Image%202026-04-27%20at%2012.31.23%20%281%29.jpeg','image')"><img src="images/baran-tower/WhatsApp%20Image%202026-04-27%20at%2012.31.23%20%281%29.jpeg" alt="" loading="lazy"></div>
+      <div class="modal-img-slot" onclick="openLightbox('images/baran-tower/WhatsApp%20Image%202026-04-27%20at%2012.31.23.jpeg','image')"><img src="images/baran-tower/WhatsApp%20Image%202026-04-27%20at%2012.31.23.jpeg" alt="" loading="lazy"></div>
+      <div class="modal-img-slot" onclick="openLightbox('images/baran-tower/WhatsApp%20Image%202026-04-27%20at%2012.31.24.jpeg','image')"><img src="images/baran-tower/WhatsApp%20Image%202026-04-27%20at%2012.31.24.jpeg" alt="" loading="lazy"></div>
+      <div class="modal-img-slot" onclick="openLightbox('images/baran-tower/WhatsApp%20Image%202026-04-27%20at%2012.31.25.jpeg','image')"><img src="images/baran-tower/WhatsApp%20Image%202026-04-27%20at%2012.31.25.jpeg" alt="" loading="lazy"></div>
+      <div class="modal-img-slot" onclick="openLightbox('images/baran-tower/WhatsApp%20Image%202026-04-27%20at%2012.31.26.jpeg','image')"><img src="images/baran-tower/WhatsApp%20Image%202026-04-27%20at%2012.31.26.jpeg" alt="" loading="lazy"></div>
+      <div class="modal-img-slot" onclick="openLightbox('images/baran-tower/WhatsApp%20Image%202026-04-29%20at%2019.41.28%20%281%29.jpeg','image')"><img src="images/baran-tower/WhatsApp%20Image%202026-04-29%20at%2019.41.28%20%281%29.jpeg" alt="" loading="lazy"></div>
+      <div class="modal-img-slot" onclick="openLightbox('images/baran-tower/WhatsApp%20Image%202026-04-29%20at%2019.41.28%20%2810%29.jpeg','image')"><img src="images/baran-tower/WhatsApp%20Image%202026-04-29%20at%2019.41.28%20%2810%29.jpeg" alt="" loading="lazy"></div>
+      <div class="modal-img-slot" onclick="openLightbox('images/baran-tower/WhatsApp%20Image%202026-04-29%20at%2019.41.28%20%2811%29.jpeg','image')"><img src="images/baran-tower/WhatsApp%20Image%202026-04-29%20at%2019.41.28%20%2811%29.jpeg" alt="" loading="lazy"></div>
+      <div class="modal-img-slot" onclick="openLightbox('images/baran-tower/WhatsApp%20Image%202026-04-29%20at%2019.41.28%20%2812%29.jpeg','image')"><img src="images/baran-tower/WhatsApp%20Image%202026-04-29%20at%2019.41.28%20%2812%29.jpeg" alt="" loading="lazy"></div>
+      <div class="modal-img-slot" onclick="openLightbox('images/baran-tower/WhatsApp%20Image%202026-04-29%20at%2019.41.28%20%2813%29.jpeg','image')"><img src="images/baran-tower/WhatsApp%20Image%202026-04-29%20at%2019.41.28%20%2813%29.jpeg" alt="" loading="lazy"></div>
+      <div class="modal-img-slot" onclick="openLightbox('images/baran-tower/WhatsApp%20Image%202026-04-29%20at%2019.41.28%20%2814%29.jpeg','image')"><img src="images/baran-tower/WhatsApp%20Image%202026-04-29%20at%2019.41.28%20%2814%29.jpeg" alt="" loading="lazy"></div>
+      <div class="modal-img-slot" onclick="openLightbox('images/baran-tower/WhatsApp%20Image%202026-04-29%20at%2019.41.28%20%2815%29.jpeg','image')"><img src="images/baran-tower/WhatsApp%20Image%202026-04-29%20at%2019.41.28%20%2815%29.jpeg" alt="" loading="lazy"></div>
+      <div class="modal-img-slot" onclick="openLightbox('images/baran-tower/WhatsApp%20Image%202026-04-29%20at%2019.41.28%20%2816%29.jpeg','image')"><img src="images/baran-tower/WhatsApp%20Image%202026-04-29%20at%2019.41.28%20%2816%29.jpeg" alt="" loading="lazy"></div>
+      <div class="modal-img-slot" onclick="openLightbox('images/baran-tower/WhatsApp%20Image%202026-04-29%20at%2019.41.28%20%2817%29.jpeg','image')"><img src="images/baran-tower/WhatsApp%20Image%202026-04-29%20at%2019.41.28%20%2817%29.jpeg" alt="" loading="lazy"></div>
+      <div class="modal-img-slot" onclick="openLightbox('images/baran-tower/WhatsApp%20Image%202026-04-29%20at%2019.41.28%20%2818%29.jpeg','image')"><img src="images/baran-tower/WhatsApp%20Image%202026-04-29%20at%2019.41.28%20%2818%29.jpeg" alt="" loading="lazy"></div>
+      <div class="modal-img-slot" onclick="openLightbox('images/baran-tower/WhatsApp%20Image%202026-04-29%20at%2019.41.28%20%2819%29.jpeg','image')"><img src="images/baran-tower/WhatsApp%20Image%202026-04-29%20at%2019.41.28%20%2819%29.jpeg" alt="" loading="lazy"></div>
+      <div class="modal-img-slot" onclick="openLightbox('images/baran-tower/WhatsApp%20Image%202026-04-29%20at%2019.41.28%20%282%29.jpeg','image')"><img src="images/baran-tower/WhatsApp%20Image%202026-04-29%20at%2019.41.28%20%282%29.jpeg" alt="" loading="lazy"></div>
+      <div class="modal-img-slot" onclick="openLightbox('images/baran-tower/WhatsApp%20Image%202026-04-29%20at%2019.41.28%20%2820%29.jpeg','image')"><img src="images/baran-tower/WhatsApp%20Image%202026-04-29%20at%2019.41.28%20%2820%29.jpeg" alt="" loading="lazy"></div>
+      <div class="modal-img-slot" onclick="openLightbox('images/baran-tower/WhatsApp%20Image%202026-04-29%20at%2019.41.28%20%2821%29.jpeg','image')"><img src="images/baran-tower/WhatsApp%20Image%202026-04-29%20at%2019.41.28%20%2821%29.jpeg" alt="" loading="lazy"></div>
+      <div class="modal-img-slot" onclick="openLightbox('images/baran-tower/WhatsApp%20Image%202026-04-29%20at%2019.41.28%20%2822%29.jpeg','image')"><img src="images/baran-tower/WhatsApp%20Image%202026-04-29%20at%2019.41.28%20%2822%29.jpeg" alt="" loading="lazy"></div>
+      <div class="modal-img-slot" onclick="openLightbox('images/baran-tower/WhatsApp%20Image%202026-04-29%20at%2019.41.28%20%2823%29.jpeg','image')"><img src="images/baran-tower/WhatsApp%20Image%202026-04-29%20at%2019.41.28%20%2823%29.jpeg" alt="" loading="lazy"></div>
+      <div class="modal-img-slot" onclick="openLightbox('images/baran-tower/WhatsApp%20Image%202026-04-29%20at%2019.41.28%20%2824%29.jpeg','image')"><img src="images/baran-tower/WhatsApp%20Image%202026-04-29%20at%2019.41.28%20%2824%29.jpeg" alt="" loading="lazy"></div>
+      <div class="modal-img-slot" onclick="openLightbox('images/baran-tower/WhatsApp%20Image%202026-04-29%20at%2019.41.28%20%2825%29.jpeg','image')"><img src="images/baran-tower/WhatsApp%20Image%202026-04-29%20at%2019.41.28%20%2825%29.jpeg" alt="" loading="lazy"></div>
+      <div class="modal-img-slot" onclick="openLightbox('images/baran-tower/WhatsApp%20Image%202026-04-29%20at%2019.41.28%20%283%29.jpeg','image')"><img src="images/baran-tower/WhatsApp%20Image%202026-04-29%20at%2019.41.28%20%283%29.jpeg" alt="" loading="lazy"></div>
+      <div class="modal-img-slot" onclick="openLightbox('images/baran-tower/WhatsApp%20Image%202026-04-29%20at%2019.41.28%20%284%29.jpeg','image')"><img src="images/baran-tower/WhatsApp%20Image%202026-04-29%20at%2019.41.28%20%284%29.jpeg" alt="" loading="lazy"></div>
+      <div class="modal-img-slot" onclick="openLightbox('images/baran-tower/WhatsApp%20Image%202026-04-29%20at%2019.41.28%20%285%29.jpeg','image')"><img src="images/baran-tower/WhatsApp%20Image%202026-04-29%20at%2019.41.28%20%285%29.jpeg" alt="" loading="lazy"></div>
+      <div class="modal-img-slot" onclick="openLightbox('images/baran-tower/WhatsApp%20Image%202026-04-29%20at%2019.41.28%20%286%29.jpeg','image')"><img src="images/baran-tower/WhatsApp%20Image%202026-04-29%20at%2019.41.28%20%286%29.jpeg" alt="" loading="lazy"></div>
+      <div class="modal-img-slot" onclick="openLightbox('images/baran-tower/WhatsApp%20Image%202026-04-29%20at%2019.41.28%20%287%29.jpeg','image')"><img src="images/baran-tower/WhatsApp%20Image%202026-04-29%20at%2019.41.28%20%287%29.jpeg" alt="" loading="lazy"></div>
+      <div class="modal-img-slot" onclick="openLightbox('images/baran-tower/WhatsApp%20Image%202026-04-29%20at%2019.41.28%20%288%29.jpeg','image')"><img src="images/baran-tower/WhatsApp%20Image%202026-04-29%20at%2019.41.28%20%288%29.jpeg" alt="" loading="lazy"></div>
+      <div class="modal-img-slot" onclick="openLightbox('images/baran-tower/WhatsApp%20Image%202026-04-29%20at%2019.41.28%20%289%29.jpeg','image')"><img src="images/baran-tower/WhatsApp%20Image%202026-04-29%20at%2019.41.28%20%289%29.jpeg" alt="" loading="lazy"></div>
+      <div class="modal-img-slot" onclick="openLightbox('images/baran-tower/WhatsApp%20Image%202026-04-29%20at%2019.41.28.jpeg','image')"><img src="images/baran-tower/WhatsApp%20Image%202026-04-29%20at%2019.41.28.jpeg" alt="" loading="lazy"></div>
+      <div class="modal-img-slot" onclick="openLightbox('images/baran-tower/WhatsApp%20Image%202026-04-29%20at%2019.47.04%20%281%29.jpeg','image')"><img src="images/baran-tower/WhatsApp%20Image%202026-04-29%20at%2019.47.04%20%281%29.jpeg" alt="" loading="lazy"></div>
+      <div class="modal-img-slot" onclick="openLightbox('images/baran-tower/WhatsApp%20Image%202026-04-29%20at%2019.47.04.jpeg','image')"><img src="images/baran-tower/WhatsApp%20Image%202026-04-29%20at%2019.47.04.jpeg" alt="" loading="lazy"></div>
+      <div class="modal-img-slot" onclick="openLightbox('images/baran-tower/WhatsApp%20Image%202026-04-29%20at%2020.01.34%20%281%29.jpeg','image')"><img src="images/baran-tower/WhatsApp%20Image%202026-04-29%20at%2020.01.34%20%281%29.jpeg" alt="" loading="lazy"></div>
+      <div class="modal-img-slot" onclick="openLightbox('images/baran-tower/WhatsApp%20Image%202026-04-29%20at%2020.01.34%20%282%29.jpeg','image')"><img src="images/baran-tower/WhatsApp%20Image%202026-04-29%20at%2020.01.34%20%282%29.jpeg" alt="" loading="lazy"></div>
+      <div class="modal-img-slot" onclick="openLightbox('images/baran-tower/WhatsApp%20Image%202026-04-29%20at%2020.01.34%20%283%29.jpeg','image')"><img src="images/baran-tower/WhatsApp%20Image%202026-04-29%20at%2020.01.34%20%283%29.jpeg" alt="" loading="lazy"></div>
+      <div class="modal-img-slot" onclick="openLightbox('images/baran-tower/WhatsApp%20Image%202026-04-29%20at%2020.01.34.jpeg','image')"><img src="images/baran-tower/WhatsApp%20Image%202026-04-29%20at%2020.01.34.jpeg" alt="" loading="lazy"></div>
+      <div class="modal-img-slot modal-video-slot" onclick="openLightbox('images/baran-tower/WhatsApp%20Video%202026-04-29%20at%2019.41.29%20%281%29.mp4','video')"><video src="images/baran-tower/WhatsApp%20Video%202026-04-29%20at%2019.41.29%20%281%29.mp4" muted loop playsinline preload="metadata"></video></div>
+      <div class="modal-img-slot modal-video-slot" onclick="openLightbox('images/baran-tower/WhatsApp%20Video%202026-04-29%20at%2019.41.29.mp4','video')"><video src="images/baran-tower/WhatsApp%20Video%202026-04-29%20at%2019.41.29.mp4" muted loop playsinline preload="metadata"></video></div>
+    </div>
+    <div class="modal-body">
+      <p class="modal-tag">Residential High-Rise Construction · Mashhad, Iran</p>
+      <h2 class="modal-title">Baran Residential Tower</h2>
+      <p class="modal-aesthetic">"A vertically integrated residential development combining structural precision with modern living standards."</p>
+      <div class="modal-meta">
+        <div class="modal-meta-item">
+          <div class="modal-meta-label">Area / Scale</div>
+          <div class="modal-meta-val">20 Floors (15 Above + 5 Basement)</div>
+        </div>
+        <div class="modal-meta-item">
+          <div class="modal-meta-label">Year</div>
+          <div class="modal-meta-val">2016–2025</div>
+        </div>
+        <div class="modal-meta-item">
+          <div class="modal-meta-label">Status</div>
+          <div class="modal-meta-val">Completed</div>
+        </div>
+      </div>
+      <p class="modal-overview-label">Overview</p>
+      <p class="modal-overview">Construction of a 20-story residential tower in Mashhad, consisting of 15 above-ground floors and 5 basement levels. The project includes 24 residential units along with shared amenities such as a swimming pool and sports facilities.</p>
+      <p class="modal-scope-label">Scope of Work</p>
+      <p class="modal-scope">Full-cycle construction execution including concrete structural works, coordination, and supervision across all project phases.</p>
+      <div class="modal-role">
+        <span class="modal-role-label">Role</span>
+        <span class="modal-role-val">Assistant Site Supervisor & Execution Supervisor</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-box" id="modal-armitaj-plaza">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    
+    <div class="modal-imgs">
+      <div class="modal-img-slot modal-img-slot-main" onclick="openLightbox('images/armitaj-plaza/WhatsApp%20Image%202026-05-12%20at%2013.27.39%20%281%29.jpeg','image')"><img src="images/armitaj-plaza/WhatsApp%20Image%202026-05-12%20at%2013.27.39%20%281%29.jpeg" alt="" loading="lazy"></div>
+      <div class="modal-img-slot" onclick="openLightbox('images/armitaj-plaza/WhatsApp%20Image%202026-05-12%20at%2013.27.39%20%282%29.jpeg','image')"><img src="images/armitaj-plaza/WhatsApp%20Image%202026-05-12%20at%2013.27.39%20%282%29.jpeg" alt="" loading="lazy"></div>
+      <div class="modal-img-slot" onclick="openLightbox('images/armitaj-plaza/WhatsApp%20Image%202026-05-12%20at%2013.27.39%20%283%29.jpeg','image')"><img src="images/armitaj-plaza/WhatsApp%20Image%202026-05-12%20at%2013.27.39%20%283%29.jpeg" alt="" loading="lazy"></div>
+      <div class="modal-img-slot" onclick="openLightbox('images/armitaj-plaza/WhatsApp%20Image%202026-05-12%20at%2013.27.39.jpeg','image')"><img src="images/armitaj-plaza/WhatsApp%20Image%202026-05-12%20at%2013.27.39.jpeg" alt="" loading="lazy"></div>
+      <div class="modal-img-slot" onclick="openLightbox('images/armitaj-plaza/WhatsApp%20Image%202026-05-12%20at%2013.34.38%20%281%29.jpeg','image')"><img src="images/armitaj-plaza/WhatsApp%20Image%202026-05-12%20at%2013.34.38%20%281%29.jpeg" alt="" loading="lazy"></div>
+      <div class="modal-img-slot" onclick="openLightbox('images/armitaj-plaza/WhatsApp%20Image%202026-05-12%20at%2013.34.38.jpeg','image')"><img src="images/armitaj-plaza/WhatsApp%20Image%202026-05-12%20at%2013.34.38.jpeg" alt="" loading="lazy"></div>
+      <div class="modal-img-slot modal-video-slot" onclick="openLightbox('images/armitaj-plaza/WhatsApp%20Video%202026-05-12%20at%2013.27.41%20%281%29.mp4','video')"><video src="images/armitaj-plaza/WhatsApp%20Video%202026-05-12%20at%2013.27.41%20%281%29.mp4" muted loop playsinline preload="metadata"></video></div>
+      <div class="modal-img-slot modal-video-slot" onclick="openLightbox('images/armitaj-plaza/WhatsApp%20Video%202026-05-12%20at%2013.27.41.mp4','video')"><video src="images/armitaj-plaza/WhatsApp%20Video%202026-05-12%20at%2013.27.41.mp4" muted loop playsinline preload="metadata"></video></div>
+    </div>
+    <div class="modal-body">
+      <p class="modal-tag">Mixed-Use Mega Project · Mashhad, Iran</p>
+      <h2 class="modal-title">Armitaj Plaza Development</h2>
+      <p class="modal-aesthetic">"Contributing to large-scale development through coordination and technical insight."</p>
+      <div class="modal-meta">
+        <div class="modal-meta-item">
+          <div class="modal-meta-label">Area / Scale</div>
+          <div class="modal-meta-val">100,000 m² · 30 Floors</div>
+        </div>
+        <div class="modal-meta-item">
+          <div class="modal-meta-label">Year</div>
+          <div class="modal-meta-val">2024 – In Progress</div>
+        </div>
+        <div class="modal-meta-item">
+          <div class="modal-meta-label">Status</div>
+          <div class="modal-meta-val">In Progress</div>
+        </div>
+      </div>
+      <p class="modal-overview-label">Overview</p>
+      <p class="modal-overview">Member of the contractor's consulting team on one of Mashhad's most significant mixed-use developments — 100,000 sqm across 30 floors — contributing to resource procurement and project planning.</p>
+      <p class="modal-scope-label">Scope of Work</p>
+      <p class="modal-scope">Active involvement in resource sourcing, supply chain coordination, and project scheduling as part of the contractor's consultant team.</p>
+      <div class="modal-role">
+        <span class="modal-role-label">Role</span>
+        <span class="modal-role-val">Contractor's Consultant Team Member</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-box" id="modal-villa-office">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    
+    <div class="modal-imgs">
+      <div class="modal-img-slot modal-img-slot-main" onclick="openLightbox('images/villa-office/WhatsApp%20Image%202026-04-27%20at%2015.57.08.jpeg','image')"><img src="images/villa-office/WhatsApp%20Image%202026-04-27%20at%2015.57.08.jpeg" alt="" loading="lazy"></div>
+      <div class="modal-img-slot" onclick="openLightbox('images/villa-office/WhatsApp%20Image%202026-04-27%20at%2015.58.37%20%281%29.jpeg','image')"><img src="images/villa-office/WhatsApp%20Image%202026-04-27%20at%2015.58.37%20%281%29.jpeg" alt="" loading="lazy"></div>
+      <div class="modal-img-slot" onclick="openLightbox('images/villa-office/WhatsApp%20Image%202026-04-27%20at%2015.58.37%20%282%29.jpeg','image')"><img src="images/villa-office/WhatsApp%20Image%202026-04-27%20at%2015.58.37%20%282%29.jpeg" alt="" loading="lazy"></div>
+      <div class="modal-img-slot" onclick="openLightbox('images/villa-office/WhatsApp%20Image%202026-04-27%20at%2015.58.37.jpeg','image')"><img src="images/villa-office/WhatsApp%20Image%202026-04-27%20at%2015.58.37.jpeg" alt="" loading="lazy"></div>
+      <div class="modal-img-slot" onclick="openLightbox('images/villa-office/WhatsApp%20Image%202026-04-27%20at%2016.01.00.jpeg','image')"><img src="images/villa-office/WhatsApp%20Image%202026-04-27%20at%2016.01.00.jpeg" alt="" loading="lazy"></div>
+      <div class="modal-img-slot" onclick="openLightbox('images/villa-office/WhatsApp%20Image%202026-04-27%20at%2016.02.12.jpeg','image')"><img src="images/villa-office/WhatsApp%20Image%202026-04-27%20at%2016.02.12.jpeg" alt="" loading="lazy"></div>
+      <div class="modal-img-slot" onclick="openLightbox('images/villa-office/WhatsApp%20Image%202026-04-27%20at%2016.05.21.jpeg','image')"><img src="images/villa-office/WhatsApp%20Image%202026-04-27%20at%2016.05.21.jpeg" alt="" loading="lazy"></div>
+      <div class="modal-img-slot" onclick="openLightbox('images/villa-office/WhatsApp%20Image%202026-04-27%20at%2016.16.10%20%281%29.jpeg','image')"><img src="images/villa-office/WhatsApp%20Image%202026-04-27%20at%2016.16.10%20%281%29.jpeg" alt="" loading="lazy"></div>
+      <div class="modal-img-slot" onclick="openLightbox('images/villa-office/WhatsApp%20Image%202026-04-27%20at%2016.17.43%20%281%29.jpeg','image')"><img src="images/villa-office/WhatsApp%20Image%202026-04-27%20at%2016.17.43%20%281%29.jpeg" alt="" loading="lazy"></div>
+      <div class="modal-img-slot" onclick="openLightbox('images/villa-office/WhatsApp%20Image%202026-04-27%20at%2016.26.36.jpeg','image')"><img src="images/villa-office/WhatsApp%20Image%202026-04-27%20at%2016.26.36.jpeg" alt="" loading="lazy"></div>
+      <div class="modal-img-slot" onclick="openLightbox('images/villa-office/WhatsApp%20Image%202026-04-27%20at%2016.27.14.jpeg','image')"><img src="images/villa-office/WhatsApp%20Image%202026-04-27%20at%2016.27.14.jpeg" alt="" loading="lazy"></div>
+      <div class="modal-img-slot" onclick="openLightbox('images/villa-office/WhatsApp%20Image%202026-04-27%20at%2016.27.50.jpeg','image')"><img src="images/villa-office/WhatsApp%20Image%202026-04-27%20at%2016.27.50.jpeg" alt="" loading="lazy"></div>
+      <div class="modal-img-slot" onclick="openLightbox('images/villa-office/WhatsApp%20Image%202026-04-27%20at%2016.28.07.jpeg','image')"><img src="images/villa-office/WhatsApp%20Image%202026-04-27%20at%2016.28.07.jpeg" alt="" loading="lazy"></div>
+      <div class="modal-img-slot" onclick="openLightbox('images/villa-office/WhatsApp%20Image%202026-04-27%20at%2016.32.01.jpeg','image')"><img src="images/villa-office/WhatsApp%20Image%202026-04-27%20at%2016.32.01.jpeg" alt="" loading="lazy"></div>
+      <div class="modal-img-slot" onclick="openLightbox('images/villa-office/WhatsApp%20Image%202026-04-27%20at%2016.34.19.jpeg','image')"><img src="images/villa-office/WhatsApp%20Image%202026-04-27%20at%2016.34.19.jpeg" alt="" loading="lazy"></div>
+      <div class="modal-img-slot" onclick="openLightbox('images/villa-office/WhatsApp%20Image%202026-04-27%20at%2016.38.55.jpeg','image')"><img src="images/villa-office/WhatsApp%20Image%202026-04-27%20at%2016.38.55.jpeg" alt="" loading="lazy"></div>
+      <div class="modal-img-slot" onclick="openLightbox('images/villa-office/WhatsApp%20Image%202026-04-27%20at%2016.39.08.jpeg','image')"><img src="images/villa-office/WhatsApp%20Image%202026-04-27%20at%2016.39.08.jpeg" alt="" loading="lazy"></div>
+      <div class="modal-img-slot" onclick="openLightbox('images/villa-office/WhatsApp%20Image%202026-04-27%20at%2016.39.21.jpeg','image')"><img src="images/villa-office/WhatsApp%20Image%202026-04-27%20at%2016.39.21.jpeg" alt="" loading="lazy"></div>
+      <div class="modal-img-slot" onclick="openLightbox('images/villa-office/WhatsApp%20Image%202026-04-27%20at%2016.39.25.jpeg','image')"><img src="images/villa-office/WhatsApp%20Image%202026-04-27%20at%2016.39.25.jpeg" alt="" loading="lazy"></div>
+      <div class="modal-img-slot" onclick="openLightbox('images/villa-office/WhatsApp%20Image%202026-04-27%20at%2016.39.37%20%281%29.jpeg','image')"><img src="images/villa-office/WhatsApp%20Image%202026-04-27%20at%2016.39.37%20%281%29.jpeg" alt="" loading="lazy"></div>
+      <div class="modal-img-slot" onclick="openLightbox('images/villa-office/WhatsApp%20Image%202026-04-27%20at%2016.39.39.jpeg','image')"><img src="images/villa-office/WhatsApp%20Image%202026-04-27%20at%2016.39.39.jpeg" alt="" loading="lazy"></div>
+      <div class="modal-img-slot" onclick="openLightbox('images/villa-office/WhatsApp%20Image%202026-04-27%20at%2016.39.40%20%281%29.jpeg','image')"><img src="images/villa-office/WhatsApp%20Image%202026-04-27%20at%2016.39.40%20%281%29.jpeg" alt="" loading="lazy"></div>
+      <div class="modal-img-slot" onclick="openLightbox('images/villa-office/WhatsApp%20Image%202026-04-27%20at%2016.39.42.jpeg','image')"><img src="images/villa-office/WhatsApp%20Image%202026-04-27%20at%2016.39.42.jpeg" alt="" loading="lazy"></div>
+      <div class="modal-img-slot" onclick="openLightbox('images/villa-office/WhatsApp%20Image%202026-04-27%20at%2016.39.44.jpeg','image')"><img src="images/villa-office/WhatsApp%20Image%202026-04-27%20at%2016.39.44.jpeg" alt="" loading="lazy"></div>
+      <div class="modal-img-slot" onclick="openLightbox('images/villa-office/WhatsApp%20Image%202026-04-27%20at%2016.39.47.jpeg','image')"><img src="images/villa-office/WhatsApp%20Image%202026-04-27%20at%2016.39.47.jpeg" alt="" loading="lazy"></div>
+      <div class="modal-img-slot" onclick="openLightbox('images/villa-office/WhatsApp%20Image%202026-04-27%20at%2016.39.48%20%281%29.jpeg','image')"><img src="images/villa-office/WhatsApp%20Image%202026-04-27%20at%2016.39.48%20%281%29.jpeg" alt="" loading="lazy"></div>
+      <div class="modal-img-slot" onclick="openLightbox('images/villa-office/WhatsApp%20Image%202026-04-27%20at%2016.39.55%20%281%29.jpeg','image')"><img src="images/villa-office/WhatsApp%20Image%202026-04-27%20at%2016.39.55%20%281%29.jpeg" alt="" loading="lazy"></div>
+      <div class="modal-img-slot" onclick="openLightbox('images/villa-office/WhatsApp%20Image%202026-04-27%20at%2016.39.55.jpeg','image')"><img src="images/villa-office/WhatsApp%20Image%202026-04-27%20at%2016.39.55.jpeg" alt="" loading="lazy"></div>
+      <div class="modal-img-slot" onclick="openLightbox('images/villa-office/WhatsApp%20Image%202026-04-27%20at%2016.39.57.jpeg','image')"><img src="images/villa-office/WhatsApp%20Image%202026-04-27%20at%2016.39.57.jpeg" alt="" loading="lazy"></div>
+      <div class="modal-img-slot modal-video-slot" onclick="openLightbox('images/villa-office/0511%281%29.mp4','video')"><video src="images/villa-office/0511%281%29.mp4" muted loop playsinline preload="metadata"></video></div>
+      <div class="modal-img-slot modal-video-slot" onclick="openLightbox('images/villa-office/WhatsApp%20Video%202026-04-27%20at%2016.01.00%20%281%29.mp4','video')"><video src="images/villa-office/WhatsApp%20Video%202026-04-27%20at%2016.01.00%20%281%29.mp4" muted loop playsinline preload="metadata"></video></div>
+      <div class="modal-img-slot modal-video-slot" onclick="openLightbox('images/villa-office/WhatsApp%20Video%202026-04-27%20at%2016.16.11.mp4','video')"><video src="images/villa-office/WhatsApp%20Video%202026-04-27%20at%2016.16.11.mp4" muted loop playsinline preload="metadata"></video></div>
+      <div class="modal-img-slot modal-video-slot" onclick="openLightbox('images/villa-office/WhatsApp%20Video%202026-04-27%20at%2016.17.58%20%281%29.mp4','video')"><video src="images/villa-office/WhatsApp%20Video%202026-04-27%20at%2016.17.58%20%281%29.mp4" muted loop playsinline preload="metadata"></video></div>
+      <div class="modal-img-slot modal-video-slot" onclick="openLightbox('images/villa-office/WhatsApp%20Video%202026-04-27%20at%2016.17.58.mp4','video')"><video src="images/villa-office/WhatsApp%20Video%202026-04-27%20at%2016.17.58.mp4" muted loop playsinline preload="metadata"></video></div>
+      <div class="modal-img-slot modal-video-slot" onclick="openLightbox('images/villa-office/WhatsApp%20Video%202026-04-27%20at%2016.28.08.mp4','video')"><video src="images/villa-office/WhatsApp%20Video%202026-04-27%20at%2016.28.08.mp4" muted loop playsinline preload="metadata"></video></div>
+      <div class="modal-img-slot modal-video-slot" onclick="openLightbox('images/villa-office/WhatsApp%20Video%202026-04-27%20at%2016.28.14%20%281%29.mp4','video')"><video src="images/villa-office/WhatsApp%20Video%202026-04-27%20at%2016.28.14%20%281%29.mp4" muted loop playsinline preload="metadata"></video></div>
+    </div>
+    <div class="modal-body">
+      <p class="modal-tag">Commercial Renovation — Change of Use · Mashhad, Iran</p>
+      <h2 class="modal-title">Villa → Engineering Office</h2>
+      <p class="modal-aesthetic">"Reimagining residential space into a functional professional environment."</p>
+      <div class="modal-meta">
+        <div class="modal-meta-item">
+          <div class="modal-meta-label">Area / Scale</div>
+          <div class="modal-meta-val">600 m² · 2 Floors</div>
+        </div>
+        <div class="modal-meta-item">
+          <div class="modal-meta-label">Year</div>
+          <div class="modal-meta-val">2024</div>
+        </div>
+        <div class="modal-meta-item">
+          <div class="modal-meta-label">Status</div>
+          <div class="modal-meta-val">Completed</div>
+        </div>
+      </div>
+      <p class="modal-overview-label">Overview</p>
+      <p class="modal-overview">Transformation of a residential villa into a fully functional engineering office, reimagining the spatial layout while preserving the structural integrity of the existing building.</p>
+      <p class="modal-scope-label">Scope of Work</p>
+      <p class="modal-scope">Full design and execution — from spatial planning and permit coordination to interior fit-out and final handover.</p>
+      <div class="modal-role">
+        <span class="modal-role-label">Role</span>
+        <span class="modal-role-val">Project Designer & Execution Supervisor</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-box" id="modal-large-reno">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    
+    <div class="modal-imgs">
+      <div class="modal-img-slot modal-img-slot-main" onclick="openLightbox('images/large-reno/WhatsApp%20Image%202026-05-10%20at%2019.05.37%20%281%29.jpeg','image')"><img src="images/large-reno/WhatsApp%20Image%202026-05-10%20at%2019.05.37%20%281%29.jpeg" alt="" loading="lazy"></div>
+      <div class="modal-img-slot" onclick="openLightbox('images/large-reno/WhatsApp%20Image%202026-05-10%20at%2019.05.37%20%282%29.jpeg','image')"><img src="images/large-reno/WhatsApp%20Image%202026-05-10%20at%2019.05.37%20%282%29.jpeg" alt="" loading="lazy"></div>
+      <div class="modal-img-slot" onclick="openLightbox('images/large-reno/WhatsApp%20Image%202026-05-10%20at%2019.05.37.jpeg','image')"><img src="images/large-reno/WhatsApp%20Image%202026-05-10%20at%2019.05.37.jpeg" alt="" loading="lazy"></div>
+      <div class="modal-img-slot modal-video-slot" onclick="openLightbox('images/large-reno/WhatsApp%20Video%202026-05-10%20at%2019.05.39%20%281%29.mp4','video')"><video src="images/large-reno/WhatsApp%20Video%202026-05-10%20at%2019.05.39%20%281%29.mp4" muted loop playsinline preload="metadata"></video></div>
+      <div class="modal-img-slot modal-video-slot" onclick="openLightbox('images/large-reno/WhatsApp%20Video%202026-05-10%20at%2019.05.39%20%282%29.mp4','video')"><video src="images/large-reno/WhatsApp%20Video%202026-05-10%20at%2019.05.39%20%282%29.mp4" muted loop playsinline preload="metadata"></video></div>
+      <div class="modal-img-slot modal-video-slot" onclick="openLightbox('images/large-reno/WhatsApp%20Video%202026-05-10%20at%2019.05.39.mp4','video')"><video src="images/large-reno/WhatsApp%20Video%202026-05-10%20at%2019.05.39.mp4" muted loop playsinline preload="metadata"></video></div>
+    </div>
+    <div class="modal-body">
+      <p class="modal-tag">Residential Interior Renovation · Mashhad, Iran</p>
+      <h2 class="modal-title">Large-Scale Residential Renovation</h2>
+      <p class="modal-aesthetic">"Redefining large-scale living through intelligent design and seamless execution."</p>
+      <div class="modal-meta">
+        <div class="modal-meta-item">
+          <div class="modal-meta-label">Area / Scale</div>
+          <div class="modal-meta-val">500 m² · Level 4</div>
+        </div>
+        <div class="modal-meta-item">
+          <div class="modal-meta-label">Year</div>
+          <div class="modal-meta-val">2025</div>
+        </div>
+        <div class="modal-meta-item">
+          <div class="modal-meta-label">Status</div>
+          <div class="modal-meta-val">Completed</div>
+        </div>
+      </div>
+      <p class="modal-overview-label">Overview</p>
+      <p class="modal-overview">Comprehensive redesign and renovation of a large residential unit with a focus on spatial efficiency, natural light optimization, and modern aesthetics.</p>
+      <p class="modal-scope-label">Scope of Work</p>
+      <p class="modal-scope">Full design, planning, and execution — including demolition, structural adjustments, interior finishes, and MEP coordination.</p>
+      <div class="modal-role">
+        <span class="modal-role-label">Role</span>
+        <span class="modal-role-val">Project Designer & Execution Supervisor</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-box" id="modal-across-the-field">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    
+    <div class="modal-imgs">
+      <div class="modal-img-slot modal-img-slot-main" onclick="openLightbox('images/across-the-field/WhatsApp%20Image%202026-05-10%20at%2020.42.48%20%281%29.jpeg','image')"><img src="images/across-the-field/WhatsApp%20Image%202026-05-10%20at%2020.42.48%20%281%29.jpeg" alt="" loading="lazy"></div>
+      <div class="modal-img-slot" onclick="openLightbox('images/across-the-field/WhatsApp%20Image%202026-05-10%20at%2020.42.48%20%287%29.jpeg','image')"><img src="images/across-the-field/WhatsApp%20Image%202026-05-10%20at%2020.42.48%20%287%29.jpeg" alt="" loading="lazy"></div>
+      <div class="modal-img-slot" onclick="openLightbox('images/across-the-field/WhatsApp%20Image%202026-05-10%20at%2020.42.48.jpeg','image')"><img src="images/across-the-field/WhatsApp%20Image%202026-05-10%20at%2020.42.48.jpeg" alt="" loading="lazy"></div>
+      <div class="modal-img-slot" onclick="openLightbox('images/across-the-field/WhatsApp%20Image%202026-05-10%20at%2020.42.51.jpeg','image')"><img src="images/across-the-field/WhatsApp%20Image%202026-05-10%20at%2020.42.51.jpeg" alt="" loading="lazy"></div>
+      <div class="modal-img-slot" onclick="openLightbox('images/across-the-field/WhatsApp%20Image%202026-05-10%20at%2020.42.52%20%281%29.jpeg','image')"><img src="images/across-the-field/WhatsApp%20Image%202026-05-10%20at%2020.42.52%20%281%29.jpeg" alt="" loading="lazy"></div>
+      <div class="modal-img-slot" onclick="openLightbox('images/across-the-field/WhatsApp%20Image%202026-05-10%20at%2020.42.52%20%2810%29.jpeg','image')"><img src="images/across-the-field/WhatsApp%20Image%202026-05-10%20at%2020.42.52%20%2810%29.jpeg" alt="" loading="lazy"></div>
+      <div class="modal-img-slot" onclick="openLightbox('images/across-the-field/WhatsApp%20Image%202026-05-10%20at%2020.42.52%20%2811%29.jpeg','image')"><img src="images/across-the-field/WhatsApp%20Image%202026-05-10%20at%2020.42.52%20%2811%29.jpeg" alt="" loading="lazy"></div>
+      <div class="modal-img-slot" onclick="openLightbox('images/across-the-field/WhatsApp%20Image%202026-05-10%20at%2020.42.52%20%2812%29.jpeg','image')"><img src="images/across-the-field/WhatsApp%20Image%202026-05-10%20at%2020.42.52%20%2812%29.jpeg" alt="" loading="lazy"></div>
+      <div class="modal-img-slot" onclick="openLightbox('images/across-the-field/WhatsApp%20Image%202026-05-10%20at%2020.42.52%20%2813%29.jpeg','image')"><img src="images/across-the-field/WhatsApp%20Image%202026-05-10%20at%2020.42.52%20%2813%29.jpeg" alt="" loading="lazy"></div>
+      <div class="modal-img-slot" onclick="openLightbox('images/across-the-field/WhatsApp%20Image%202026-05-10%20at%2020.42.52%20%2814%29.jpeg','image')"><img src="images/across-the-field/WhatsApp%20Image%202026-05-10%20at%2020.42.52%20%2814%29.jpeg" alt="" loading="lazy"></div>
+      <div class="modal-img-slot" onclick="openLightbox('images/across-the-field/WhatsApp%20Image%202026-05-10%20at%2020.42.52%20%2815%29.jpeg','image')"><img src="images/across-the-field/WhatsApp%20Image%202026-05-10%20at%2020.42.52%20%2815%29.jpeg" alt="" loading="lazy"></div>
+      <div class="modal-img-slot" onclick="openLightbox('images/across-the-field/WhatsApp%20Image%202026-05-10%20at%2020.42.52%20%2816%29.jpeg','image')"><img src="images/across-the-field/WhatsApp%20Image%202026-05-10%20at%2020.42.52%20%2816%29.jpeg" alt="" loading="lazy"></div>
+      <div class="modal-img-slot" onclick="openLightbox('images/across-the-field/WhatsApp%20Image%202026-05-10%20at%2020.42.52%20%2817%29.jpeg','image')"><img src="images/across-the-field/WhatsApp%20Image%202026-05-10%20at%2020.42.52%20%2817%29.jpeg" alt="" loading="lazy"></div>
+      <div class="modal-img-slot" onclick="openLightbox('images/across-the-field/WhatsApp%20Image%202026-05-10%20at%2020.42.52%20%2818%29.jpeg','image')"><img src="images/across-the-field/WhatsApp%20Image%202026-05-10%20at%2020.42.52%20%2818%29.jpeg" alt="" loading="lazy"></div>
+      <div class="modal-img-slot" onclick="openLightbox('images/across-the-field/WhatsApp%20Image%202026-05-10%20at%2020.42.52%20%282%29.jpeg','image')"><img src="images/across-the-field/WhatsApp%20Image%202026-05-10%20at%2020.42.52%20%282%29.jpeg" alt="" loading="lazy"></div>
+      <div class="modal-img-slot" onclick="openLightbox('images/across-the-field/WhatsApp%20Image%202026-05-10%20at%2020.42.52%20%283%29.jpeg','image')"><img src="images/across-the-field/WhatsApp%20Image%202026-05-10%20at%2020.42.52%20%283%29.jpeg" alt="" loading="lazy"></div>
+      <div class="modal-img-slot" onclick="openLightbox('images/across-the-field/WhatsApp%20Image%202026-05-10%20at%2020.42.52%20%284%29.jpeg','image')"><img src="images/across-the-field/WhatsApp%20Image%202026-05-10%20at%2020.42.52%20%284%29.jpeg" alt="" loading="lazy"></div>
+      <div class="modal-img-slot" onclick="openLightbox('images/across-the-field/WhatsApp%20Image%202026-05-10%20at%2020.42.52%20%285%29.jpeg','image')"><img src="images/across-the-field/WhatsApp%20Image%202026-05-10%20at%2020.42.52%20%285%29.jpeg" alt="" loading="lazy"></div>
+      <div class="modal-img-slot" onclick="openLightbox('images/across-the-field/WhatsApp%20Image%202026-05-10%20at%2020.42.52%20%286%29.jpeg','image')"><img src="images/across-the-field/WhatsApp%20Image%202026-05-10%20at%2020.42.52%20%286%29.jpeg" alt="" loading="lazy"></div>
+      <div class="modal-img-slot" onclick="openLightbox('images/across-the-field/WhatsApp%20Image%202026-05-10%20at%2020.42.52%20%287%29.jpeg','image')"><img src="images/across-the-field/WhatsApp%20Image%202026-05-10%20at%2020.42.52%20%287%29.jpeg" alt="" loading="lazy"></div>
+      <div class="modal-img-slot" onclick="openLightbox('images/across-the-field/WhatsApp%20Image%202026-05-10%20at%2020.42.52%20%288%29.jpeg','image')"><img src="images/across-the-field/WhatsApp%20Image%202026-05-10%20at%2020.42.52%20%288%29.jpeg" alt="" loading="lazy"></div>
+      <div class="modal-img-slot" onclick="openLightbox('images/across-the-field/WhatsApp%20Image%202026-05-10%20at%2020.42.52%20%289%29.jpeg','image')"><img src="images/across-the-field/WhatsApp%20Image%202026-05-10%20at%2020.42.52%20%289%29.jpeg" alt="" loading="lazy"></div>
+      <div class="modal-img-slot" onclick="openLightbox('images/across-the-field/WhatsApp%20Image%202026-05-10%20at%2020.42.52.jpeg','image')"><img src="images/across-the-field/WhatsApp%20Image%202026-05-10%20at%2020.42.52.jpeg" alt="" loading="lazy"></div>
+      <div class="modal-img-slot" onclick="openLightbox('images/across-the-field/WhatsApp%20Image%202026-05-10%20at%2020.43.35.jpeg','image')"><img src="images/across-the-field/WhatsApp%20Image%202026-05-10%20at%2020.43.35.jpeg" alt="" loading="lazy"></div>
+      <div class="modal-img-slot" onclick="openLightbox('images/across-the-field/WhatsApp%20Image%202026-05-10%20at%2020.49.11.jpeg','image')"><img src="images/across-the-field/WhatsApp%20Image%202026-05-10%20at%2020.49.11.jpeg" alt="" loading="lazy"></div>
+      <div class="modal-img-slot" onclick="openLightbox('images/across-the-field/WhatsApp%20Image%202026-05-10%20at%2020.50.48%20%281%29.jpeg','image')"><img src="images/across-the-field/WhatsApp%20Image%202026-05-10%20at%2020.50.48%20%281%29.jpeg" alt="" loading="lazy"></div>
+      <div class="modal-img-slot" onclick="openLightbox('images/across-the-field/WhatsApp%20Image%202026-05-10%20at%2020.50.48%20%282%29.jpeg','image')"><img src="images/across-the-field/WhatsApp%20Image%202026-05-10%20at%2020.50.48%20%282%29.jpeg" alt="" loading="lazy"></div>
+      <div class="modal-img-slot" onclick="openLightbox('images/across-the-field/WhatsApp%20Image%202026-05-10%20at%2020.50.48%20%283%29.jpeg','image')"><img src="images/across-the-field/WhatsApp%20Image%202026-05-10%20at%2020.50.48%20%283%29.jpeg" alt="" loading="lazy"></div>
+      <div class="modal-img-slot" onclick="openLightbox('images/across-the-field/WhatsApp%20Image%202026-05-10%20at%2020.50.48%20%284%29.jpeg','image')"><img src="images/across-the-field/WhatsApp%20Image%202026-05-10%20at%2020.50.48%20%284%29.jpeg" alt="" loading="lazy"></div>
+      <div class="modal-img-slot" onclick="openLightbox('images/across-the-field/WhatsApp%20Image%202026-05-10%20at%2020.50.48.jpeg','image')"><img src="images/across-the-field/WhatsApp%20Image%202026-05-10%20at%2020.50.48.jpeg" alt="" loading="lazy"></div>
+      <div class="modal-img-slot modal-video-slot" onclick="openLightbox('images/across-the-field/WhatsApp%20Video%202026-05-10%20at%2020.42.52%20%281%29.mp4','video')"><video src="images/across-the-field/WhatsApp%20Video%202026-05-10%20at%2020.42.52%20%281%29.mp4" muted loop playsinline preload="metadata"></video></div>
+      <div class="modal-img-slot modal-video-slot" onclick="openLightbox('images/across-the-field/WhatsApp%20Video%202026-05-10%20at%2020.42.52%20%2810%29.mp4','video')"><video src="images/across-the-field/WhatsApp%20Video%202026-05-10%20at%2020.42.52%20%2810%29.mp4" muted loop playsinline preload="metadata"></video></div>
+      <div class="modal-img-slot modal-video-slot" onclick="openLightbox('images/across-the-field/WhatsApp%20Video%202026-05-10%20at%2020.42.52%20%282%29.mp4','video')"><video src="images/across-the-field/WhatsApp%20Video%202026-05-10%20at%2020.42.52%20%282%29.mp4" muted loop playsinline preload="metadata"></video></div>
+      <div class="modal-img-slot modal-video-slot" onclick="openLightbox('images/across-the-field/WhatsApp%20Video%202026-05-10%20at%2020.42.52%20%283%29.mp4','video')"><video src="images/across-the-field/WhatsApp%20Video%202026-05-10%20at%2020.42.52%20%283%29.mp4" muted loop playsinline preload="metadata"></video></div>
+      <div class="modal-img-slot modal-video-slot" onclick="openLightbox('images/across-the-field/WhatsApp%20Video%202026-05-10%20at%2020.42.52%20%284%29.mp4','video')"><video src="images/across-the-field/WhatsApp%20Video%202026-05-10%20at%2020.42.52%20%284%29.mp4" muted loop playsinline preload="metadata"></video></div>
+      <div class="modal-img-slot modal-video-slot" onclick="openLightbox('images/across-the-field/WhatsApp%20Video%202026-05-10%20at%2020.42.52%20%285%29.mp4','video')"><video src="images/across-the-field/WhatsApp%20Video%202026-05-10%20at%2020.42.52%20%285%29.mp4" muted loop playsinline preload="metadata"></video></div>
+      <div class="modal-img-slot modal-video-slot" onclick="openLightbox('images/across-the-field/WhatsApp%20Video%202026-05-10%20at%2020.42.52%20%286%29.mp4','video')"><video src="images/across-the-field/WhatsApp%20Video%202026-05-10%20at%2020.42.52%20%286%29.mp4" muted loop playsinline preload="metadata"></video></div>
+      <div class="modal-img-slot modal-video-slot" onclick="openLightbox('images/across-the-field/WhatsApp%20Video%202026-05-10%20at%2020.42.52%20%287%29.mp4','video')"><video src="images/across-the-field/WhatsApp%20Video%202026-05-10%20at%2020.42.52%20%287%29.mp4" muted loop playsinline preload="metadata"></video></div>
+      <div class="modal-img-slot modal-video-slot" onclick="openLightbox('images/across-the-field/WhatsApp%20Video%202026-05-10%20at%2020.42.52%20%288%29.mp4','video')"><video src="images/across-the-field/WhatsApp%20Video%202026-05-10%20at%2020.42.52%20%288%29.mp4" muted loop playsinline preload="metadata"></video></div>
+      <div class="modal-img-slot modal-video-slot" onclick="openLightbox('images/across-the-field/WhatsApp%20Video%202026-05-10%20at%2020.42.52%20%289%29.mp4','video')"><video src="images/across-the-field/WhatsApp%20Video%202026-05-10%20at%2020.42.52%20%289%29.mp4" muted loop playsinline preload="metadata"></video></div>
+      <div class="modal-img-slot modal-video-slot" onclick="openLightbox('images/across-the-field/WhatsApp%20Video%202026-05-10%20at%2020.42.52.mp4','video')"><video src="images/across-the-field/WhatsApp%20Video%202026-05-10%20at%2020.42.52.mp4" muted loop playsinline preload="metadata"></video></div>
+      <div class="modal-img-slot modal-video-slot" onclick="openLightbox('images/across-the-field/WhatsApp%20Video%202026-05-10%20at%2020.49.11.mp4','video')"><video src="images/across-the-field/WhatsApp%20Video%202026-05-10%20at%2020.49.11.mp4" muted loop playsinline preload="metadata"></video></div>
+      <div class="modal-img-slot modal-video-slot" onclick="openLightbox('images/across-the-field/WhatsApp%20Video%202026-05-10%20at%2020.51.36.mp4','video')"><video src="images/across-the-field/WhatsApp%20Video%202026-05-10%20at%2020.51.36.mp4" muted loop playsinline preload="metadata"></video></div>
+    </div>
+    <div class="modal-body">
+      <p class="modal-tag">Construction &amp; Interior · Various Locations</p>
+      <h2 class="modal-title">Across the Field</h2>
+      <p class="modal-aesthetic">"A collection of moments from the ground up — where raw materials meet deliberate craft."</p>
+      <p class="modal-overview-label">About this Collection</p>
+      <p class="modal-overview">Every project leaves behind more than a finished structure. This is a selection of works captured across different sites and scales — residential builds, commercial fit-outs, interior transformations — each one a testament to the process behind the result.</p>
+      <div class="modal-role">
+        <span class="modal-role-label">Scope</span>
+        <span class="modal-role-val">Construction · Renovation · Interior Design</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-box" id="modal-hybrid">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    
+    <div class="modal-imgs">
+      <div class="modal-img-slot modal-img-slot-main" onclick="openLightbox('images/hybrid/WhatsApp%20Image%202026-05-10%20at%2020.42.47%20%281%29.jpeg','image')"><img src="images/hybrid/WhatsApp%20Image%202026-05-10%20at%2020.42.47%20%281%29.jpeg" alt="" loading="lazy"></div>
+      <div class="modal-img-slot" onclick="openLightbox('images/hybrid/WhatsApp%20Image%202026-05-10%20at%2020.42.47%20%282%29.jpeg','image')"><img src="images/hybrid/WhatsApp%20Image%202026-05-10%20at%2020.42.47%20%282%29.jpeg" alt="" loading="lazy"></div>
+      <div class="modal-img-slot" onclick="openLightbox('images/hybrid/WhatsApp%20Image%202026-05-10%20at%2020.42.47.jpeg','image')"><img src="images/hybrid/WhatsApp%20Image%202026-05-10%20at%2020.42.47.jpeg" alt="" loading="lazy"></div>
+      <div class="modal-img-slot" onclick="openLightbox('images/hybrid/WhatsApp%20Image%202026-05-10%20at%2020.42.48%20%282%29.jpeg','image')"><img src="images/hybrid/WhatsApp%20Image%202026-05-10%20at%2020.42.48%20%282%29.jpeg" alt="" loading="lazy"></div>
+      <div class="modal-img-slot" onclick="openLightbox('images/hybrid/WhatsApp%20Image%202026-05-10%20at%2020.42.48%20%283%29.jpeg','image')"><img src="images/hybrid/WhatsApp%20Image%202026-05-10%20at%2020.42.48%20%283%29.jpeg" alt="" loading="lazy"></div>
+      <div class="modal-img-slot" onclick="openLightbox('images/hybrid/WhatsApp%20Image%202026-05-10%20at%2020.42.48%20%284%29.jpeg','image')"><img src="images/hybrid/WhatsApp%20Image%202026-05-10%20at%2020.42.48%20%284%29.jpeg" alt="" loading="lazy"></div>
+      <div class="modal-img-slot" onclick="openLightbox('images/hybrid/WhatsApp%20Image%202026-05-10%20at%2020.42.48%20%285%29.jpeg','image')"><img src="images/hybrid/WhatsApp%20Image%202026-05-10%20at%2020.42.48%20%285%29.jpeg" alt="" loading="lazy"></div>
+      <div class="modal-img-slot" onclick="openLightbox('images/hybrid/WhatsApp%20Image%202026-05-10%20at%2020.42.48%20%286%29.jpeg','image')"><img src="images/hybrid/WhatsApp%20Image%202026-05-10%20at%2020.42.48%20%286%29.jpeg" alt="" loading="lazy"></div>
+      <div class="modal-img-slot" onclick="openLightbox('images/hybrid/WhatsApp%20Image%202026-05-10%20at%2020.49.49.jpeg','image')"><img src="images/hybrid/WhatsApp%20Image%202026-05-10%20at%2020.49.49.jpeg" alt="" loading="lazy"></div>
+    </div>
+    <div class="modal-body">
+      <p class="modal-tag">Residential Construction · Mashhad, Iran</p>
+      <h2 class="modal-title">Hybrid Structural Building</h2>
+      <p class="modal-aesthetic">"Where concrete strength meets steel precision in a unified structural system."</p>
+      <div class="modal-meta">
+        <div class="modal-meta-item">
+          <div class="modal-meta-label">Area / Scale</div>
+          <div class="modal-meta-val">9 Floors</div>
+        </div>
+        <div class="modal-meta-item">
+          <div class="modal-meta-label">Year</div>
+          <div class="modal-meta-val">2019</div>
+        </div>
+        <div class="modal-meta-item">
+          <div class="modal-meta-label">Status</div>
+          <div class="modal-meta-val">Completed</div>
+        </div>
+      </div>
+      <p class="modal-overview-label">Overview</p>
+      <p class="modal-overview">Construction of a 9-story residential building utilizing a hybrid structural system combining reinforced concrete and steel frameworks.</p>
+      <p class="modal-scope-label">Scope of Work</p>
+      <p class="modal-scope">Execution and installation of concrete and steel structures, including all structural connections and phase coordination.</p>
+      <div class="modal-role">
+        <span class="modal-role-label">Role</span>
+        <span class="modal-role-val">Execution Supervisor</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-box" id="modal-salon">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    
+    <div class="modal-imgs">
+      <div class="modal-img-slot modal-img-slot-main" onclick="openLightbox('images/salon/WhatsApp%20Image%202026-04-27%20at%2012.28.37%20%281%29.jpeg','image')"><img src="images/salon/WhatsApp%20Image%202026-04-27%20at%2012.28.37%20%281%29.jpeg" alt="" loading="lazy"></div>
+      <div class="modal-img-slot" onclick="openLightbox('images/salon/WhatsApp%20Image%202026-04-27%20at%2012.28.37%20%282%29.jpeg','image')"><img src="images/salon/WhatsApp%20Image%202026-04-27%20at%2012.28.37%20%282%29.jpeg" alt="" loading="lazy"></div>
+      <div class="modal-img-slot" onclick="openLightbox('images/salon/WhatsApp%20Image%202026-04-27%20at%2012.29.50%20%281%29.jpeg','image')"><img src="images/salon/WhatsApp%20Image%202026-04-27%20at%2012.29.50%20%281%29.jpeg" alt="" loading="lazy"></div>
+      <div class="modal-img-slot" onclick="openLightbox('images/salon/WhatsApp%20Image%202026-04-27%20at%2012.31.27%20%281%29.jpeg','image')"><img src="images/salon/WhatsApp%20Image%202026-04-27%20at%2012.31.27%20%281%29.jpeg" alt="" loading="lazy"></div>
+      <div class="modal-img-slot" onclick="openLightbox('images/salon/WhatsApp%20Image%202026-04-27%20at%2012.31.27%20%282%29.jpeg','image')"><img src="images/salon/WhatsApp%20Image%202026-04-27%20at%2012.31.27%20%282%29.jpeg" alt="" loading="lazy"></div>
+      <div class="modal-img-slot" onclick="openLightbox('images/salon/WhatsApp%20Image%202026-04-27%20at%2012.31.27.jpeg','image')"><img src="images/salon/WhatsApp%20Image%202026-04-27%20at%2012.31.27.jpeg" alt="" loading="lazy"></div>
+      <div class="modal-img-slot" onclick="openLightbox('images/salon/WhatsApp%20Image%202026-04-27%20at%2012.31.29%20%281%29.jpeg','image')"><img src="images/salon/WhatsApp%20Image%202026-04-27%20at%2012.31.29%20%281%29.jpeg" alt="" loading="lazy"></div>
+      <div class="modal-img-slot" onclick="openLightbox('images/salon/WhatsApp%20Image%202026-04-27%20at%2012.31.29%20%282%29.jpeg','image')"><img src="images/salon/WhatsApp%20Image%202026-04-27%20at%2012.31.29%20%282%29.jpeg" alt="" loading="lazy"></div>
+      <div class="modal-img-slot" onclick="openLightbox('images/salon/WhatsApp%20Image%202026-04-27%20at%2012.31.29%20%283%29.jpeg','image')"><img src="images/salon/WhatsApp%20Image%202026-04-27%20at%2012.31.29%20%283%29.jpeg" alt="" loading="lazy"></div>
+      <div class="modal-img-slot" onclick="openLightbox('images/salon/WhatsApp%20Image%202026-04-27%20at%2012.32.54.jpeg','image')"><img src="images/salon/WhatsApp%20Image%202026-04-27%20at%2012.32.54.jpeg" alt="" loading="lazy"></div>
+      <div class="modal-img-slot" onclick="openLightbox('images/salon/WhatsApp%20Image%202026-04-27%20at%2012.32.55%20%281%29.jpeg','image')"><img src="images/salon/WhatsApp%20Image%202026-04-27%20at%2012.32.55%20%281%29.jpeg" alt="" loading="lazy"></div>
+      <div class="modal-img-slot" onclick="openLightbox('images/salon/WhatsApp%20Image%202026-04-27%20at%2012.32.55.jpeg','image')"><img src="images/salon/WhatsApp%20Image%202026-04-27%20at%2012.32.55.jpeg" alt="" loading="lazy"></div>
+      <div class="modal-img-slot" onclick="openLightbox('images/salon/WhatsApp%20Image%202026-04-27%20at%2012.32.57.jpeg','image')"><img src="images/salon/WhatsApp%20Image%202026-04-27%20at%2012.32.57.jpeg" alt="" loading="lazy"></div>
+      <div class="modal-img-slot" onclick="openLightbox('images/salon/WhatsApp%20Image%202026-04-27%20at%2012.33.35.jpeg','image')"><img src="images/salon/WhatsApp%20Image%202026-04-27%20at%2012.33.35.jpeg" alt="" loading="lazy"></div>
+      <div class="modal-img-slot" onclick="openLightbox('images/salon/WhatsApp%20Image%202026-04-27%20at%2012.35.28%20%281%29.jpeg','image')"><img src="images/salon/WhatsApp%20Image%202026-04-27%20at%2012.35.28%20%281%29.jpeg" alt="" loading="lazy"></div>
+      <div class="modal-img-slot" onclick="openLightbox('images/salon/WhatsApp%20Image%202026-04-27%20at%2012.35.29%20%281%29.jpeg','image')"><img src="images/salon/WhatsApp%20Image%202026-04-27%20at%2012.35.29%20%281%29.jpeg" alt="" loading="lazy"></div>
+      <div class="modal-img-slot" onclick="openLightbox('images/salon/WhatsApp%20Image%202026-04-27%20at%2012.35.29.jpeg','image')"><img src="images/salon/WhatsApp%20Image%202026-04-27%20at%2012.35.29.jpeg" alt="" loading="lazy"></div>
+      <div class="modal-img-slot" onclick="openLightbox('images/salon/WhatsApp%20Image%202026-04-27%20at%2012.41.06.jpeg','image')"><img src="images/salon/WhatsApp%20Image%202026-04-27%20at%2012.41.06.jpeg" alt="" loading="lazy"></div>
+      <div class="modal-img-slot modal-video-slot" onclick="openLightbox('images/salon/WhatsApp%20Video%202026-04-27%20at%2012.28.57.mp4','video')"><video src="images/salon/WhatsApp%20Video%202026-04-27%20at%2012.28.57.mp4" muted loop playsinline preload="metadata"></video></div>
+      <div class="modal-img-slot modal-video-slot" onclick="openLightbox('images/salon/WhatsApp%20Video%202026-04-27%20at%2012.31.41.mp4','video')"><video src="images/salon/WhatsApp%20Video%202026-04-27%20at%2012.31.41.mp4" muted loop playsinline preload="metadata"></video></div>
+      <div class="modal-img-slot modal-video-slot" onclick="openLightbox('images/salon/WhatsApp%20Video%202026-04-27%20at%2012.34.22.mp4','video')"><video src="images/salon/WhatsApp%20Video%202026-04-27%20at%2012.34.22.mp4" muted loop playsinline preload="metadata"></video></div>
+      <div class="modal-img-slot modal-video-slot" onclick="openLightbox('images/salon/WhatsApp%20Video%202026-04-27%20at%2012.34.47.mp4','video')"><video src="images/salon/WhatsApp%20Video%202026-04-27%20at%2012.34.47.mp4" muted loop playsinline preload="metadata"></video></div>
+      <div class="modal-img-slot modal-video-slot" onclick="openLightbox('images/salon/WhatsApp%20Video%202026-04-27%20at%2012.35.30.mp4','video')"><video src="images/salon/WhatsApp%20Video%202026-04-27%20at%2012.35.30.mp4" muted loop playsinline preload="metadata"></video></div>
+      <div class="modal-img-slot modal-video-slot" onclick="openLightbox('images/salon/WhatsApp%20Video%202026-04-27%20at%2020.14.08.mp4','video')"><video src="images/salon/WhatsApp%20Video%202026-04-27%20at%2020.14.08.mp4" muted loop playsinline preload="metadata"></video></div>
+      <div class="modal-img-slot modal-video-slot" onclick="openLightbox('images/salon/WhatsApp%20Video%202026-04-27%20at%2020.14.10.mp4','video')"><video src="images/salon/WhatsApp%20Video%202026-04-27%20at%2020.14.10.mp4" muted loop playsinline preload="metadata"></video></div>
+    </div>
+    <div class="modal-body">
+      <p class="modal-tag">Commercial Interior Renovation · Mashhad, Iran</p>
+      <h2 class="modal-title">Beauty Salon Renovation</h2>
+      <p class="modal-aesthetic">"Crafting a refined commercial space where design enhances both function and experience."</p>
+      <div class="modal-meta">
+        <div class="modal-meta-item">
+          <div class="modal-meta-label">Area / Scale</div>
+          <div class="modal-meta-val">100 m²</div>
+        </div>
+        <div class="modal-meta-item">
+          <div class="modal-meta-label">Year</div>
+          <div class="modal-meta-val">2025</div>
+        </div>
+        <div class="modal-meta-item">
+          <div class="modal-meta-label">Status</div>
+          <div class="modal-meta-val">Completed</div>
+        </div>
+      </div>
+      <p class="modal-overview-label">Overview</p>
+      <p class="modal-overview">Renovation of a beauty salon with a focus on creating an elegant, functional environment that enhances the client experience from the moment they enter.</p>
+      <p class="modal-scope-label">Scope of Work</p>
+      <p class="modal-scope">Full design and execution — spatial planning, material selection, lighting design, and complete interior fit-out.</p>
+      <div class="modal-role">
+        <span class="modal-role-label">Role</span>
+        <span class="modal-role-val">Project Designer & Execution Supervisor</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-box" id="modal-gold-office">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    
+    <div class="modal-imgs">
+      <div class="modal-img-slot modal-img-slot-main" onclick="openLightbox('images/gold-office/11.jpeg','image')"><img src="images/gold-office/11.jpeg" alt="" loading="lazy"></div>
+      <div class="modal-img-slot" onclick="openLightbox('images/gold-office/12.jpeg','image')"><img src="images/gold-office/12.jpeg" alt="" loading="lazy"></div>
+      <div class="modal-img-slot" onclick="openLightbox('images/gold-office/13.jpeg','image')"><img src="images/gold-office/13.jpeg" alt="" loading="lazy"></div>
+      <div class="modal-img-slot" onclick="openLightbox('images/gold-office/14.jpeg','image')"><img src="images/gold-office/14.jpeg" alt="" loading="lazy"></div>
+      <div class="modal-img-slot" onclick="openLightbox('images/gold-office/2.jpeg','image')"><img src="images/gold-office/2.jpeg" alt="" loading="lazy"></div>
+      <div class="modal-img-slot" onclick="openLightbox('images/gold-office/3.jpeg','image')"><img src="images/gold-office/3.jpeg" alt="" loading="lazy"></div>
+      <div class="modal-img-slot" onclick="openLightbox('images/gold-office/4.jpeg','image')"><img src="images/gold-office/4.jpeg" alt="" loading="lazy"></div>
+      <div class="modal-img-slot" onclick="openLightbox('images/gold-office/5.jpeg','image')"><img src="images/gold-office/5.jpeg" alt="" loading="lazy"></div>
+      <div class="modal-img-slot" onclick="openLightbox('images/gold-office/6.jpeg','image')"><img src="images/gold-office/6.jpeg" alt="" loading="lazy"></div>
+      <div class="modal-img-slot" onclick="openLightbox('images/gold-office/7.jpeg','image')"><img src="images/gold-office/7.jpeg" alt="" loading="lazy"></div>
+      <div class="modal-img-slot" onclick="openLightbox('images/gold-office/8.jpeg','image')"><img src="images/gold-office/8.jpeg" alt="" loading="lazy"></div>
+      <div class="modal-img-slot" onclick="openLightbox('images/gold-office/9.jpeg','image')"><img src="images/gold-office/9.jpeg" alt="" loading="lazy"></div>
+      <div class="modal-img-slot" onclick="openLightbox('images/gold-office/WhatsApp%20Image%202026-05-10%20at%2019.15.23%20%281%29.jpeg','image')"><img src="images/gold-office/WhatsApp%20Image%202026-05-10%20at%2019.15.23%20%281%29.jpeg" alt="" loading="lazy"></div>
+      <div class="modal-img-slot" onclick="openLightbox('images/gold-office/WhatsApp%20Image%202026-05-10%20at%2019.15.23%20%283%29.jpeg','image')"><img src="images/gold-office/WhatsApp%20Image%202026-05-10%20at%2019.15.23%20%283%29.jpeg" alt="" loading="lazy"></div>
+      <div class="modal-img-slot" onclick="openLightbox('images/gold-office/WhatsApp%20Image%202026-05-10%20at%2019.15.23.jpeg','image')"><img src="images/gold-office/WhatsApp%20Image%202026-05-10%20at%2019.15.23.jpeg" alt="" loading="lazy"></div>
+      <div class="modal-img-slot modal-video-slot" onclick="openLightbox('images/gold-office/1.mp4','video')"><video src="images/gold-office/1.mp4" muted loop playsinline preload="metadata"></video></div>
+      <div class="modal-img-slot modal-video-slot" onclick="openLightbox('images/gold-office/10.mp4','video')"><video src="images/gold-office/10.mp4" muted loop playsinline preload="metadata"></video></div>
+      <div class="modal-img-slot modal-video-slot" onclick="openLightbox('images/gold-office/WhatsApp%20Video%202026-05-10%20at%2019.15.24%20%281%29.mp4','video')"><video src="images/gold-office/WhatsApp%20Video%202026-05-10%20at%2019.15.24%20%281%29.mp4" muted loop playsinline preload="metadata"></video></div>
+      <div class="modal-img-slot modal-video-slot" onclick="openLightbox('images/gold-office/WhatsApp%20Video%202026-05-10%20at%2019.15.24.mp4','video')"><video src="images/gold-office/WhatsApp%20Video%202026-05-10%20at%2019.15.24.mp4" muted loop playsinline preload="metadata"></video></div>
+    </div>
+    <div class="modal-body">
+      <p class="modal-tag">Commercial Renovation · Caspian Commercial Complex, Mashhad</p>
+      <h2 class="modal-title">Gold Sales Office</h2>
+      <p class="modal-aesthetic">"Transforming compact space into a high-impact commercial environment."</p>
+      <div class="modal-meta">
+        <div class="modal-meta-item">
+          <div class="modal-meta-label">Area / Scale</div>
+          <div class="modal-meta-val">60 m²</div>
+        </div>
+        <div class="modal-meta-item">
+          <div class="modal-meta-label">Year</div>
+          <div class="modal-meta-val">2025</div>
+        </div>
+        <div class="modal-meta-item">
+          <div class="modal-meta-label">Status</div>
+          <div class="modal-meta-val">Completed</div>
+        </div>
+      </div>
+      <p class="modal-overview-label">Overview</p>
+      <p class="modal-overview">Conversion of an existing café unit into a gold sales office within the Caspian Commercial Complex, requiring a complete redesign of spatial flow and security-conscious layout.</p>
+      <p class="modal-scope-label">Scope of Work</p>
+      <p class="modal-scope">Full design and execution, including layout planning, display systems, lighting, and interior finishes.</p>
+      <div class="modal-role">
+        <span class="modal-role-label">Role</span>
+        <span class="modal-role-val">Project Designer & Execution Supervisor</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-box" id="modal-leather">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    
+    <div class="modal-imgs">
+      <div class="modal-img-slot modal-img-slot-main" onclick="openLightbox('images/leather/1.jpeg','image')"><img src="images/leather/1.jpeg" alt="" loading="lazy"></div>
+      <div class="modal-img-slot" onclick="openLightbox('images/leather/2.jpeg','image')"><img src="images/leather/2.jpeg" alt="" loading="lazy"></div>
+      <div class="modal-img-slot" onclick="openLightbox('images/leather/3.jpeg','image')"><img src="images/leather/3.jpeg" alt="" loading="lazy"></div>
+      <div class="modal-img-slot" onclick="openLightbox('images/leather/4.jpeg','image')"><img src="images/leather/4.jpeg" alt="" loading="lazy"></div>
+      <div class="modal-img-slot" onclick="openLightbox('images/leather/5.jpeg','image')"><img src="images/leather/5.jpeg" alt="" loading="lazy"></div>
+      <div class="modal-img-slot" onclick="openLightbox('images/leather/6.jpeg','image')"><img src="images/leather/6.jpeg" alt="" loading="lazy"></div>
+      <div class="modal-img-slot" onclick="openLightbox('images/leather/WhatsApp%20Image%202026-04-27%20at%2011.37.31.jpeg','image')"><img src="images/leather/WhatsApp%20Image%202026-04-27%20at%2011.37.31.jpeg" alt="" loading="lazy"></div>
+      <div class="modal-img-slot" onclick="openLightbox('images/leather/WhatsApp%20Image%202026-04-27%20at%2011.38.04.jpeg','image')"><img src="images/leather/WhatsApp%20Image%202026-04-27%20at%2011.38.04.jpeg" alt="" loading="lazy"></div>
+      <div class="modal-img-slot" onclick="openLightbox('images/leather/WhatsApp%20Image%202026-04-27%20at%2011.38.25%20%281%29.jpeg','image')"><img src="images/leather/WhatsApp%20Image%202026-04-27%20at%2011.38.25%20%281%29.jpeg" alt="" loading="lazy"></div>
+      <div class="modal-img-slot" onclick="openLightbox('images/leather/WhatsApp%20Image%202026-04-27%20at%2011.38.25.jpeg','image')"><img src="images/leather/WhatsApp%20Image%202026-04-27%20at%2011.38.25.jpeg" alt="" loading="lazy"></div>
+      <div class="modal-img-slot" onclick="openLightbox('images/leather/WhatsApp%20Image%202026-04-27%20at%2011.38.26.jpeg','image')"><img src="images/leather/WhatsApp%20Image%202026-04-27%20at%2011.38.26.jpeg" alt="" loading="lazy"></div>
+      <div class="modal-img-slot" onclick="openLightbox('images/leather/WhatsApp%20Image%202026-04-27%20at%2011.55.51.jpeg','image')"><img src="images/leather/WhatsApp%20Image%202026-04-27%20at%2011.55.51.jpeg" alt="" loading="lazy"></div>
+      <div class="modal-img-slot" onclick="openLightbox('images/leather/WhatsApp%20Image%202026-04-27%20at%2012.04.40%20%281%29.jpeg','image')"><img src="images/leather/WhatsApp%20Image%202026-04-27%20at%2012.04.40%20%281%29.jpeg" alt="" loading="lazy"></div>
+      <div class="modal-img-slot" onclick="openLightbox('images/leather/WhatsApp%20Image%202026-04-27%20at%2012.04.40.jpeg','image')"><img src="images/leather/WhatsApp%20Image%202026-04-27%20at%2012.04.40.jpeg" alt="" loading="lazy"></div>
+      <div class="modal-img-slot" onclick="openLightbox('images/leather/WhatsApp%20Image%202026-04-27%20at%2012.06.30.jpeg','image')"><img src="images/leather/WhatsApp%20Image%202026-04-27%20at%2012.06.30.jpeg" alt="" loading="lazy"></div>
+      <div class="modal-img-slot" onclick="openLightbox('images/leather/WhatsApp%20Image%202026-04-27%20at%2012.07.07.jpeg','image')"><img src="images/leather/WhatsApp%20Image%202026-04-27%20at%2012.07.07.jpeg" alt="" loading="lazy"></div>
+      <div class="modal-img-slot" onclick="openLightbox('images/leather/WhatsApp%20Image%202026-04-27%20at%2012.12.45.jpeg','image')"><img src="images/leather/WhatsApp%20Image%202026-04-27%20at%2012.12.45.jpeg" alt="" loading="lazy"></div>
+      <div class="modal-img-slot" onclick="openLightbox('images/leather/WhatsApp%20Image%202026-04-27%20at%2012.16.48%20%282%29.jpeg','image')"><img src="images/leather/WhatsApp%20Image%202026-04-27%20at%2012.16.48%20%282%29.jpeg" alt="" loading="lazy"></div>
+      <div class="modal-img-slot" onclick="openLightbox('images/leather/WhatsApp%20Image%202026-04-27%20at%2012.16.48%20%283%29.jpeg','image')"><img src="images/leather/WhatsApp%20Image%202026-04-27%20at%2012.16.48%20%283%29.jpeg" alt="" loading="lazy"></div>
+      <div class="modal-img-slot" onclick="openLightbox('images/leather/WhatsApp%20Image%202026-04-27%20at%2012.16.48.jpeg','image')"><img src="images/leather/WhatsApp%20Image%202026-04-27%20at%2012.16.48.jpeg" alt="" loading="lazy"></div>
+      <div class="modal-img-slot" onclick="openLightbox('images/leather/WhatsApp%20Image%202026-04-27%20at%2012.16.50.jpeg','image')"><img src="images/leather/WhatsApp%20Image%202026-04-27%20at%2012.16.50.jpeg" alt="" loading="lazy"></div>
+      <div class="modal-img-slot" onclick="openLightbox('images/leather/WhatsApp%20Image%202026-04-27%20at%2012.16.51%20%281%29.jpeg','image')"><img src="images/leather/WhatsApp%20Image%202026-04-27%20at%2012.16.51%20%281%29.jpeg" alt="" loading="lazy"></div>
+      <div class="modal-img-slot" onclick="openLightbox('images/leather/WhatsApp%20Image%202026-04-27%20at%2012.16.51.jpeg','image')"><img src="images/leather/WhatsApp%20Image%202026-04-27%20at%2012.16.51.jpeg" alt="" loading="lazy"></div>
+      <div class="modal-img-slot" onclick="openLightbox('images/leather/WhatsApp%20Image%202026-04-27%20at%2020.14.05%20%281%29.jpeg','image')"><img src="images/leather/WhatsApp%20Image%202026-04-27%20at%2020.14.05%20%281%29.jpeg" alt="" loading="lazy"></div>
+      <div class="modal-img-slot" onclick="openLightbox('images/leather/WhatsApp%20Image%202026-04-27%20at%2020.14.05%20%282%29.jpeg','image')"><img src="images/leather/WhatsApp%20Image%202026-04-27%20at%2020.14.05%20%282%29.jpeg" alt="" loading="lazy"></div>
+      <div class="modal-img-slot" onclick="openLightbox('images/leather/WhatsApp%20Image%202026-04-27%20at%2020.14.05.jpeg','image')"><img src="images/leather/WhatsApp%20Image%202026-04-27%20at%2020.14.05.jpeg" alt="" loading="lazy"></div>
+      <div class="modal-img-slot modal-video-slot" onclick="openLightbox('images/leather/WhatsApp%20Video%202026-04-27%20at%2012.14.43.mp4','video')"><video src="images/leather/WhatsApp%20Video%202026-04-27%20at%2012.14.43.mp4" muted loop playsinline preload="metadata"></video></div>
+      <div class="modal-img-slot modal-video-slot" onclick="openLightbox('images/leather/WhatsApp%20Video%202026-04-27%20at%2012.19.53.mp4','video')"><video src="images/leather/WhatsApp%20Video%202026-04-27%20at%2012.19.53.mp4" muted loop playsinline preload="metadata"></video></div>
+    </div>
+    <div class="modal-body">
+      <p class="modal-tag">Commercial Renovation · Armitaj Commercial Center, Mashhad</p>
+      <h2 class="modal-title">Leather Retail Store</h2>
+      <p class="modal-aesthetic">"Transforming a standard commercial unit into a distinctive retail experience."</p>
+      <div class="modal-meta">
+        <div class="modal-meta-item">
+          <div class="modal-meta-label">Area / Scale</div>
+          <div class="modal-meta-val">Commercial Unit</div>
+        </div>
+        <div class="modal-meta-item">
+          <div class="modal-meta-label">Year</div>
+          <div class="modal-meta-val">2025</div>
+        </div>
+        <div class="modal-meta-item">
+          <div class="modal-meta-label">Status</div>
+          <div class="modal-meta-val">Completed</div>
+        </div>
+      </div>
+      <p class="modal-overview-label">Overview</p>
+      <p class="modal-overview">Conversion of a commercial unit within Armitaj Commercial Center into a leather retail store, creating a distinctive brand environment for the client.</p>
+      <p class="modal-scope-label">Scope of Work</p>
+      <p class="modal-scope">Full design and execution — store layout, display fixtures, lighting concept, and interior finishes.</p>
+      <div class="modal-role">
+        <span class="modal-role-label">Role</span>
+        <span class="modal-role-val">Project Designer & Execution Supervisor</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-box" id="modal-baran-unit">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    
+    <div class="modal-imgs">
+      <div class="modal-img-slot modal-img-slot-main" onclick="openLightbox('images/baran-unit/WhatsApp%20Image%202026-04-27%20at%2011.28.04.jpeg','image')"><img src="images/baran-unit/WhatsApp%20Image%202026-04-27%20at%2011.28.04.jpeg" alt="" loading="lazy"></div>
+      <div class="modal-img-slot" onclick="openLightbox('images/baran-unit/WhatsApp%20Image%202026-04-27%20at%2011.28.24.jpeg','image')"><img src="images/baran-unit/WhatsApp%20Image%202026-04-27%20at%2011.28.24.jpeg" alt="" loading="lazy"></div>
+      <div class="modal-img-slot" onclick="openLightbox('images/baran-unit/WhatsApp%20Image%202026-04-27%20at%2011.28.36%20%281%29.jpeg','image')"><img src="images/baran-unit/WhatsApp%20Image%202026-04-27%20at%2011.28.36%20%281%29.jpeg" alt="" loading="lazy"></div>
+      <div class="modal-img-slot" onclick="openLightbox('images/baran-unit/WhatsApp%20Image%202026-04-27%20at%2011.33.30.jpeg','image')"><img src="images/baran-unit/WhatsApp%20Image%202026-04-27%20at%2011.33.30.jpeg" alt="" loading="lazy"></div>
+      <div class="modal-img-slot" onclick="openLightbox('images/baran-unit/WhatsApp%20Image%202026-04-27%20at%2019.58.22%20%282%29.jpeg','image')"><img src="images/baran-unit/WhatsApp%20Image%202026-04-27%20at%2019.58.22%20%282%29.jpeg" alt="" loading="lazy"></div>
+      <div class="modal-img-slot" onclick="openLightbox('images/baran-unit/WhatsApp%20Image%202026-04-27%20at%2020.00.33%20%281%29.jpeg','image')"><img src="images/baran-unit/WhatsApp%20Image%202026-04-27%20at%2020.00.33%20%281%29.jpeg" alt="" loading="lazy"></div>
+      <div class="modal-img-slot" onclick="openLightbox('images/baran-unit/WhatsApp%20Image%202026-04-27%20at%2020.00.33.jpeg','image')"><img src="images/baran-unit/WhatsApp%20Image%202026-04-27%20at%2020.00.33.jpeg" alt="" loading="lazy"></div>
+      <div class="modal-img-slot" onclick="openLightbox('images/baran-unit/WhatsApp%20Image%202026-04-27%20at%2020.00.34.jpeg','image')"><img src="images/baran-unit/WhatsApp%20Image%202026-04-27%20at%2020.00.34.jpeg" alt="" loading="lazy"></div>
+      <div class="modal-img-slot" onclick="openLightbox('images/baran-unit/WhatsApp%20Image%202026-04-27%20at%2020.00.36%20%282%29.jpeg','image')"><img src="images/baran-unit/WhatsApp%20Image%202026-04-27%20at%2020.00.36%20%282%29.jpeg" alt="" loading="lazy"></div>
+      <div class="modal-img-slot" onclick="openLightbox('images/baran-unit/WhatsApp%20Image%202026-04-27%20at%2020.00.37.jpeg','image')"><img src="images/baran-unit/WhatsApp%20Image%202026-04-27%20at%2020.00.37.jpeg" alt="" loading="lazy"></div>
+      <div class="modal-img-slot modal-video-slot" onclick="openLightbox('images/baran-unit/WhatsApp%20Video%202026-04-27%20at%2011.26.26.mp4','video')"><video src="images/baran-unit/WhatsApp%20Video%202026-04-27%20at%2011.26.26.mp4" muted loop playsinline preload="metadata"></video></div>
+      <div class="modal-img-slot modal-video-slot" onclick="openLightbox('images/baran-unit/WhatsApp%20Video%202026-04-27%20at%2011.33.32.mp4','video')"><video src="images/baran-unit/WhatsApp%20Video%202026-04-27%20at%2011.33.32.mp4" muted loop playsinline preload="metadata"></video></div>
+      <div class="modal-img-slot modal-video-slot" onclick="openLightbox('images/baran-unit/WhatsApp%20Video%202026-04-27%20at%2020.11.07.mp4','video')"><video src="images/baran-unit/WhatsApp%20Video%202026-04-27%20at%2020.11.07.mp4" muted loop playsinline preload="metadata"></video></div>
+      <div class="modal-img-slot modal-video-slot" onclick="openLightbox('images/baran-unit/WhatsApp%20Video%202026-04-27%20at%2020.14.01.mp4','video')"><video src="images/baran-unit/WhatsApp%20Video%202026-04-27%20at%2020.14.01.mp4" muted loop playsinline preload="metadata"></video></div>
+      <div class="modal-img-slot modal-video-slot" onclick="openLightbox('images/baran-unit/WhatsApp%20Video%202026-04-27%20at%2020.14.06.mp4','video')"><video src="images/baran-unit/WhatsApp%20Video%202026-04-27%20at%2020.14.06.mp4" muted loop playsinline preload="metadata"></video></div>
+      <div class="modal-img-slot modal-video-slot" onclick="openLightbox('images/baran-unit/WhatsApp%20Video%202026-04-27%20at%2020.14.07.mp4','video')"><video src="images/baran-unit/WhatsApp%20Video%202026-04-27%20at%2020.14.07.mp4" muted loop playsinline preload="metadata"></video></div>
+    </div>
+    <div class="modal-body">
+      <p class="modal-tag">Residential Interior Renovation · Baran Tower, Level 15, Mashhad</p>
+      <h2 class="modal-title">Baran Tower Unit Renovation</h2>
+      <p class="modal-aesthetic">"Refining elevated living through thoughtful design and precise execution."</p>
+      <div class="modal-meta">
+        <div class="modal-meta-item">
+          <div class="modal-meta-label">Area / Scale</div>
+          <div class="modal-meta-val">250 m²</div>
+        </div>
+        <div class="modal-meta-item">
+          <div class="modal-meta-label">Year</div>
+          <div class="modal-meta-val">2022</div>
+        </div>
+        <div class="modal-meta-item">
+          <div class="modal-meta-label">Status</div>
+          <div class="modal-meta-val">Completed</div>
+        </div>
+      </div>
+      <p class="modal-overview-label">Overview</p>
+      <p class="modal-overview">Full renovation of a residential unit on the 15th floor of Baran Tower, focusing on modern design sensibility and optimized spatial functionality.</p>
+      <p class="modal-scope-label">Scope of Work</p>
+      <p class="modal-scope">Complete design and execution from concept to delivery, including all interior finishes, custom joinery, and MEP works.</p>
+      <div class="modal-role">
+        <span class="modal-role-label">Role</span>
+        <span class="modal-role-val">Project Designer & Execution Supervisor</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+
+// ── PROJECT MODAL ──
+(function(){
+  const modal = document.getElementById('project-modal');
+  const rows = document.querySelectorAll('.project-row');
+  const idMap = {
+    'Baran Residential Tower': 'baran-tower',
+    'Armitaj Plaza Development': 'armitaj-plaza',
+    'Villa → Engineering Office': 'villa-office',
+    'Residential Unit Renovation': 'large-reno',
+    'Across the Field': 'across-the-field',
+    'Hybrid Structural Building': 'hybrid',
+    'Beauty Salon Renovation': 'salon',
+    'Gold Sales Office': 'gold-office',
+    'Leather Retail Store': 'leather',
+    'Baran Tower Unit Renovation': 'baran-unit',
+  };
+  rows.forEach(row => {
+    row.addEventListener('click', () => {
+      const name = row.querySelector('.project-name').textContent.trim();
+      const id = idMap[name];
+      if (!id) return;
+      document.querySelectorAll('.modal-box').forEach(b => b.style.display = 'none');
+      const box = document.getElementById('modal-' + id);
+      if (box) { box.style.display = 'block'; }
+      modal.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    });
+  });
+  window.closeModal = function() {
+    modal.classList.remove('open');
+    document.body.style.overflow = '';
+  };
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+})();
+
+</script>
+
+<div id="lightbox" onclick="closeLightbox(event)">
+  <button class="lb-close" onclick="closeLightbox(event,true)">✕</button>
+  <div id="lb-content"></div>
+</div>
+<script>
+(function(){
+  document.addEventListener('mouseover', function(e){
+    var slot = e.target.closest('.modal-video-slot');
+    if (!slot) return;
+    var v = slot.querySelector('video');
+    if (v) { v.play().catch(function(){}); slot.classList.add('is-playing'); }
+  });
+  document.addEventListener('mouseout', function(e){
+    var slot = e.target.closest('.modal-video-slot');
+    if (!slot) return;
+    if (slot.contains(e.relatedTarget)) return;
+    var v = slot.querySelector('video');
+    if (v) { v.pause(); v.currentTime = 0; slot.classList.remove('is-playing'); }
+  });
+})();
+function openLightbox(src, type){
+  var lb = document.getElementById('lightbox');
+  var c = document.getElementById('lb-content');
+  if (type === 'video') {
+    c.innerHTML = '<video src="'+src+'" controls autoplay loop></video>';
+  } else {
+    c.innerHTML = '<img src="'+src+'" alt="">';
+  }
+  lb.classList.add('open');
+}
+function closeLightbox(e, force){
+  if (force || e.target.id === 'lightbox' || e.target.classList.contains('lb-close')) {
+    var lb = document.getElementById('lightbox');
+    document.getElementById('lb-content').innerHTML = '';
+    lb.classList.remove('open');
+  }
+}
+document.addEventListener('keydown', function(e){
+  if (e.key === 'Escape') closeLightbox(null, true);
+});
+</script>
+
+</body>
+</html>
