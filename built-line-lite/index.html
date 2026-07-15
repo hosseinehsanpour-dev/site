@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>BUILT LINE — Civil Engineer Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="/styles.css"/>
+</head>
+<body>
+<header class="header">
+  <a class="brand" href="#top">BUILT LINE</a>
+  <nav class="nav">
+    <a href="#services">Services</a>
+    <a href="#projects">Projects</a>
+    <a href="#experience">Experience</a>
+    <a href="#credentials">Credentials</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
+<section class="hero" id="top">
+  <video class="hero-v" id="hero-v" autoplay muted loop playsinline poster="/media/hero-poster.jpg">
+    <source src="/media/hero.mp4" type="video/mp4"/>
+  </video>
+  <div class="hero-shade"></div>
+  <div class="hero-box wrap">
+    <h1><span id="h1"></span><br/><span id="h2"></span></h1>
+    <p class="hero-p" id="hero-p"></p>
+    <div class="hero-cta">
+      <a class="btn b1" href="#projects">View Projects</a>
+      <a class="btn b2" href="#contact">Get in Touch</a>
+    </div>
+  </div>
+</section>
+<section class="wrap sec"><div class="stats" id="stats"></div></section>
+<section class="sec alt" id="services">
+  <div class="wrap">
+    <header class="sh"><h2>Services & Expertise</h2><p>Comprehensive civil engineering solutions tailored to your project needs</p></header>
+    <div class="svc" id="svc"></div>
+  </div>
+</section>
+<section class="sec" id="projects">
+  <div class="wrap">
+    <header class="sh"><h2>Featured Projects</h2><p>A showcase of innovative civil engineering solutions delivered across various sectors</p></header>
+    <div class="proj" id="proj"></div>
+    <div class="pdetail" id="pdetail" hidden></div>
+  </div>
+</section>
+<section class="sec alt" id="experience">
+  <div class="wrap">
+    <header class="sh"><h2>Professional Experience</h2><p>A timeline of major projects and career milestones</p></header>
+    <div class="tl" id="tl"></div>
+  </div>
+</section>
+<section class="sec" id="credentials">
+  <div class="wrap">
+    <header class="sh"><h2>Credentials & Qualifications</h2><p>Professional certifications, education, and industry recognition</p></header>
+    <div class="cred2">
+      <div><h3>Certifications & Licenses</h3><div id="certs"></div></div>
+      <div><h3>Education</h3><div id="edu"></div><h3>Professional Affiliations</h3><ul id="aff"></ul></div>
+    </div>
+  </div>
+</section>
+<section class="sec alt" id="contact">
+  <div class="wrap">
+    <header class="sh"><h2 id="ch"></h2><p id="cs"></p></header>
+    <div class="cgrid">
+      <form id="cf">
+        <label>Full Name<input name="name" required/></label>
+        <label>Email<input name="email" type="email" required/></label>
+        <label>Project Type<select name="projectType" required>
+          <option value="commercial">Commercial Building</option>
+          <option value="infrastructure">Infrastructure Project</option>
+          <option value="bridge">Bridge Design</option>
+          <option value="residential">Residential Development</option>
+          <option value="consultation">Technical Consultation</option>
+          <option value="other">Other</option>
+        </select></label>
+        <label>Budget (optional)<select name="budget">
+          <option value="">Prefer not to say</option>
+          <option value="under-1m">Under $1M</option>
+          <option value="1m-5m">$1M - $5M</option>
+          <option value="5m-10m">$5M - $10M</option>
+          <option value="10m-50m">$10M - $50M</option>
+          <option value="over-50m">Over $50M</option>
+        </select></label>
+        <label>Project Details<textarea name="message" rows="6" required placeholder="Timeline, scope, requirements…"></textarea></label>
+        <button type="submit">Send Message</button>
+      </form>
+      <aside class="cinfo" id="cinfo"></aside>
+    </div>
+  </div>
+</section>
+<footer class="foot">
+  <div class="wrap footg">
+    <div><strong>BUILT LINE</strong><p id="ftag"></p></div>
+    <div><strong>Quick Links</strong><a href="#projects">Projects</a><a href="#credentials">Credentials</a><a href="#experience">Experience</a><a href="#contact">Contact</a></div>
+    <div><strong>Services</strong><span>Structural Design</span><span>Project Management</span><span>Site Supervision</span><span>Technical Consulting</span></div>
+    <div><strong>Professional</strong><span>ASCE Member</span><span>NSPE Member</span><span>SEI Member</span><span>Licensed PE</span></div>
+  </div>
+  <div class="wrap footb"><span id="cpy"></span><div class="soc" id="soc"></div></div>
+</footer>
+<script type="module" src="/main.js"></script>
+</body>
+</html>
