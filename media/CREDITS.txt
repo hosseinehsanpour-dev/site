@@ -1,0 +1,11 @@
+Footage: Pexels (https://www.pexels.com/license/) - free for commercial use, no attribution required.
+Do not redistribute the raw clips on stock platforms.
+
+hero-l/, hero-p/, hero-poster*.jpg  <- "Drone Footage of Construction Workers on Top of a Building" by utopia 36
+    https://www.pexels.com/video/drone-footage-of-construction-workers-on-top-of-a-building-14058340/
+cranes-dusk.mp4/.jpg                <- "4K Construction Cranes at Sunset" by Florian Delée
+    https://www.pexels.com/video/4k-construction-cranes-at-sunset-39583281/
+tower-cranes.mp4/.jpg               <- "Tower Construction with Cranes at Sunset" by Ivan Chumak
+    https://www.pexels.com/video/tower-construction-with-cranes-at-sunset-40388856/
+about-site-*.webp/.jpg              <- "Concrete Building Under Construction with Crane" by BREAKS OUT (photo)
+    https://www.pexels.com/photo/concrete-building-under-construction-with-crane-30832161/
